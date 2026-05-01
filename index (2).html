@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="458th Hotels">
+<meta name="theme-color" content="#1c3a58">
+<title>458th Airlift Squadron — Hotel Finder</title>
+<style>
+:root {
+  --red:#c8102e; --navy:#1c3a58;
+  --bg:#f5f5f7; --card:#fff; --border:rgba(0,0,0,0.10);
+  --txt:#1a1a1a; --txt2:#6e6e73; --link:#0071e3;
+  --green:#1a7a3c; --gold:#b8860b;
+  --r1:8px; --r2:12px; --r3:16px;
+  --sb:env(safe-area-inset-bottom,0px);
+  --st:env(safe-area-inset-top,0px);
+}
+@media(prefers-color-scheme:dark){
+  :root{ --bg:#1c1c1e; --card:#2c2c2e; --border:rgba(255,255,255,0.12);
+    --txt:#f2f2f7; --txt2:#aeaeb2; --link:#60a8fb; --green:#30d158; --gold:#ffd60a; }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--txt);
+  padding-bottom:calc(20px + var(--sb));
+  -webkit-text-size-adjust:100%; overscroll-behavior:none;
+}
+
+/* ── SKY ── */
+.sky{position:relative;height:88px;background:var(--navy);overflow:hidden;
+     border-bottom:2.5px solid var(--red);padding-top:var(--st)}
+.cloud{position:absolute;background:rgba(255,255,255,.10);border-radius:40px;animation:drift linear infinite}
+.c1{width:70px;height:14px;top:20px;animation-duration:20s;animation-delay:-5s}
+.c2{width:44px;height:11px;top:46px;animation-duration:28s;animation-delay:-14s}
+.c3{width:90px;height:13px;top:30px;animation-duration:24s;animation-delay:-9s}
+@keyframes drift{from{left:-130px}to{left:calc(100% + 130px)}}
+.jet{position:absolute;top:14px;animation:fly 9s linear infinite}
+@keyframes fly{0%{left:-200px}100%{left:calc(100% + 70px)}}
+
+/* ── PAGE HEADER ── */
+.sq{text-align:center;font-size:13px;font-weight:700;color:var(--red);
+    letter-spacing:.14em;padding:12px 16px 4px;text-transform:uppercase}
+.hdr{text-align:center;padding:2px 16px 12px;border-bottom:.5px solid var(--border)}
+.hdr-sub{font-size:12px;color:var(--txt2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.hdr-ttl{font-size:22px;font-weight:600}
+
+/* ── API KEY SCREEN ── */
+#ks{padding:28px 20px;display:flex;flex-direction:column;gap:16px}
+#ks h2{font-size:19px;font-weight:600;text-align:center}
+#ks p{font-size:13px;color:var(--txt2);line-height:1.65}
+#ks a{color:var(--link)}
+#ks code{font-family:monospace;font-size:12px;background:var(--bg);padding:1px 5px;border-radius:4px}
+.kr{display:flex;gap:8px}
+.kr input{flex:1;font-size:13px;font-family:monospace;padding:11px 12px;
+  border-radius:var(--r1);border:1px solid var(--border);background:var(--card);
+  color:var(--txt);outline:none;min-height:48px;}
+.kr input:focus{border-color:var(--red)}
+.btn-r{background:var(--red);color:#fff;border:none;border-radius:var(--r1);
+  padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;min-height:48px;white-space:nowrap;}
+.btn-r:active{opacity:.8}
+.knote{font-size:12px;color:var(--txt2);background:var(--bg);border-radius:var(--r1);padding:14px;line-height:1.75}
+.knote strong{color:var(--txt)}
+#kerr{color:var(--red);font-size:13px;display:none;padding:4px 0}
+
+/* ── MAIN APP ── */
+#app{display:none}
+
+/* ── LOCATE ── */
+.locate{display:flex;flex-direction:column;align-items:center;padding:22px 16px 10px;gap:10px}
+.dbw{position:relative;width:120px;height:120px;cursor:pointer;
+     -webkit-user-select:none;user-select:none;transition:transform .12s ease;}
+.dbw:active{transform:scale(.91)}
+.dbw.off{opacity:.45;pointer-events:none}
+.locate-hint{font-size:13px;color:var(--txt2);text-align:center}
+
+/* ── FORM ── */
+.fsec{padding:8px 16px 4px}
+.drow{display:flex;align-items:center;gap:10px;background:var(--card);
+  border:.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;}
+.dlbl{font-size:14px;color:var(--txt2);white-space:nowrap;flex-shrink:0}
+.drow input[type=date]{flex:1;font-size:15px;color:var(--txt);background:transparent;
+  border:none;outline:none;-webkit-appearance:none;font-family:inherit;min-height:44px;}
+
+/* ── PILLS ── */
+.pills{display:flex;gap:8px;padding:10px 16px 6px;justify-content:center}
+.pill{font-size:13px;padding:6px 18px;border-radius:20px;border:.5px solid var(--border);
+  color:var(--txt2);cursor:pointer;background:var(--card);min-height:36px;
+  display:flex;align-items:center;-webkit-user-select:none;user-select:none;
+  transition:background .15s,color .15s;}
+.pill.on{background:var(--txt);color:#fff;border-color:transparent}
+@media(prefers-color-scheme:dark){.pill.on{background:#f2f2f7;color:#1c1c1e}}
+
+/* ── RESULTS ── */
+.reshdr{text-align:center;font-size:13px;color:var(--txt2);padding:4px 16px 8px;display:none}
+.results{padding:0 16px;display:flex;flex-direction:column;gap:12px}
+.hcard{background:var(--card);border:.5px solid var(--border);border-radius:var(--r3);padding:14px 16px}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.cname{font-size:15px;font-weight:600;line-height:1.3}
+.badge{font-size:11px;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;font-weight:600}
+.bh{background:#ddeafc;color:#0d3b8a} .bm{background:#fcdede;color:#8a0d0d}
+@media(prefers-color-scheme:dark){.bh{background:#0d3b8a;color:#a8c8f8}.bm{background:#8a0d0d;color:#f8a8a8}}
+.cmeta{font-size:12px;color:var(--txt2);margin-bottom:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.caddr{font-size:13px;color:var(--link);text-decoration:none;display:block;margin-bottom:10px;line-height:1.4;word-break:break-word}
+.ratebox{background:var(--bg);border-radius:var(--r1);padding:10px 12px;margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:center}
+.rlbl{font-size:11px;color:var(--txt2);margin-bottom:2px}
+.rmil{font-size:15px;font-weight:600;color:var(--green)}
+.rmil span{font-size:11px;font-weight:400;color:var(--txt2)}
+.rstd{font-size:13px;color:var(--txt2);text-decoration:line-through}
+.avrow{display:flex;justify-content:space-between;align-items:center;
+  border-top:.5px solid var(--border);padding-top:10px}
+.avy{font-size:13px;color:var(--green);font-weight:500}
+.avn{font-size:13px;color:var(--red);font-weight:500}
+.avu{font-size:13px;color:var(--txt2)}
+.bbtn{font-size:13px;font-weight:500;padding:7px 16px;min-height:36px;
+  border-radius:var(--r1);border:.5px solid var(--border);background:var(--card);
+  color:var(--link);text-decoration:none;display:flex;align-items:center;}
+.bbtn:active{opacity:.6}
+
+/* ── STATUS ── */
+.lbox{text-align:center;padding:32px 16px;color:var(--txt2);font-size:14px}
+.spin{width:28px;height:28px;border:2.5px solid var(--border);border-top-color:var(--red);
+  border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ebox{background:#fff0f0;border:.5px solid #ffb3b3;border-radius:var(--r2);
+  padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.5;}
+@media(prefers-color-scheme:dark){.ebox{background:#3a1010;border-color:#8a3030;color:#f8a8a8}}
+.geo{font-size:12px;color:var(--txt2);text-align:center;padding:0 16px 6px}
+.chgkey{background:none;border:none;color:var(--txt2);font-size:11px;cursor:pointer;
+  text-decoration:underline;display:block;margin:16px auto 4px;padding:4px;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     API KEY SCREEN
+     Shown once on first visit.
+     Key stored in localStorage.
+════════════════════════════════ -->
+<div id="ks">
+  <div style="background:var(--navy);height:6px"></div>
+  <div style="background:var(--red);height:3px"></div>
+  <div style="text-align:center;padding:18px 0 0;font-size:44px">🎯</div>
+  <div style="text-align:center">
+    <div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.14em;
+                text-transform:uppercase;margin-bottom:6px">458th Airlift Squadron</div>
+    <h2>Hotel Finder</h2>
+  </div>
+
+  <p>Enter your <strong>Anthropic API key</strong> once and this app will remember it. Your key never leaves your browser — it goes only to Anthropic's servers when you search.</p>
+
+  <div class="kr">
+    <input type="password" id="ki" placeholder="sk-ant-api03-…"
+           autocomplete="off" autocorrect="off" spellcheck="false"/>
+    <button class="btn-r" onclick="saveKey()">Save</button>
+  </div>
+  <div id="kerr"></div>
+
+  <div class="knote">
+    <strong>Get your free API key:</strong><br>
+    1. Go to <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com/settings/keys</a><br>
+    2. Sign in → click <strong>Create Key</strong><br>
+    3. Copy the key (starts with <code>sk-ant-</code>) and paste above<br><br>
+    <strong>First-time cost:</strong> New accounts get free credits. After that, each hotel search costs roughly $0.001 — less than a tenth of a penny.<br><br>
+    Your key is saved to this browser's local storage and is never shared or logged.
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     MAIN APP
+════════════════════════════════ -->
+<div id="app">
+
+  <!-- Animated sky with C-21A -->
+  <div class="sky">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="jet">
+      <svg width="190" height="60" viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="182,28 30,18 24,28 30,38" fill="#8a9bb0"/>
+        <polygon points="182,28 30,18 95,28" fill="#b0bec8"/>
+        <rect x="24" y="25" width="158" height="6" rx="1" fill="#fff"/>
+        <rect x="24" y="25" width="158" height="2" rx="1" fill="#dce6ee"/>
+        <polygon points="24,25 4,13 14,25" fill="#8a9bb0"/>
+        <polygon points="24,31 4,43 14,31" fill="#8a9bb0"/>
+        <polygon points="58,25 46,11 82,25" fill="#7a8ea3"/>
+        <polygon points="58,31 46,46 82,31" fill="#7a8ea3"/>
+        <polygon points="66,11 54,4 70,11" fill="#6a7e93"/>
+        <rect x="128" y="20" width="14" height="8" rx="2" fill="#5a6a7a"/>
+        <rect x="128" y="34" width="14" height="8" rx="2" fill="#5a6a7a"/>
+        <rect x="140" y="21" width="6" height="6" rx="1" fill="#3a4a5a"/>
+        <rect x="140" y="35" width="6" height="6" rx="1" fill="#3a4a5a"/>
+        <rect x="160" y="24" width="20" height="8" rx="3" fill="#6a7a8a"/>
+        <rect x="176" y="26" width="4" height="4" rx="1" fill="#2a3a4a"/>
+        <rect x="150" y="15" width="4" height="14" rx="1" fill="#7a8a9a"/>
+        <polygon points="150,15 154,15 152,8" fill="#8a9aaa"/>
+        <rect x="143" y="13" width="7" height="3" rx="1" fill="#7a8a9a"/>
+        <rect x="143" y="42" width="7" height="3" rx="1" fill="#7a8a9a"/>
+        <rect x="28" y="25" width="8" height="6" rx="1" fill="#4a6a8a"/>
+        <circle cx="32" cy="28" r="2.5" fill="#2a4a6a"/>
+        <circle cx="32" cy="28" r="1" fill="#6a9aba"/>
+        <text x="72" y="30" font-size="5.5" fill="#1c3a58" font-family="sans-serif"
+              font-weight="bold" letter-spacing=".5">U.S. AIR FORCE</text>
+        <rect x="108" y="21" width="12" height="8" rx=".5" fill="#fff"/>
+        <polygon points="108,25 114,21 114,29" fill="#c8102e"/>
+        <polygon points="114,25 120,21 120,29" fill="#c8102e" opacity=".6"/>
+        <circle cx="114" cy="25" r="2.2" fill="#1c3a58"/>
+        <text x="155" y="22" font-size="4.5" fill="#dce6ee" font-family="sans-serif" font-weight="bold">C-21A</text>
+        <line x1="24" y1="28" x2="4" y2="28" stroke="#9ab0c4" stroke-width=".8" stroke-dasharray="3,2" opacity=".7"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sq">458th Airlift Squadron</div>
+  <div class="hdr">
+    <div class="hdr-sub">Tonight's Stay</div>
+    <div class="hdr-ttl">Hilton &amp; Marriott Finder</div>
+  </div>
+
+  <!-- Dartboard locate button -->
+  <div class="locate">
+    <div class="dbw" id="dbw" onclick="doLocate()" role="button" aria-label="Locate me">
+      <svg viewBox="0 0 120 120" style="display:block;width:120px;height:120px"
+           xmlns="http://www.w3.org/2000/svg">
+        <defs><path id="arc" d="M 12,60 A 48,48 0 0,1 108,60"/></defs>
+        <circle cx="60" cy="60" r="60" fill="#c8102e"/>
+        <circle cx="60" cy="60" r="49" fill="#fff"/>
+        <circle cx="60" cy="60" r="39" fill="#c8102e"/>
+        <circle cx="60" cy="60" r="29" fill="#fff"/>
+        <circle cx="60" cy="60" r="19" fill="#c8102e"/>
+        <circle cx="60" cy="60" r="9"  fill="#fff"/>
+        <circle cx="60" cy="60" r="4"  fill="#c8102e"/>
+        <line x1="60" y1="1"  x2="60" y2="119" stroke="#000" stroke-width="1" opacity=".13"/>
+        <line x1="1"  y1="60" x2="119" y2="60" stroke="#000" stroke-width="1" opacity=".13"/>
+        <polygon points="60,7 55,19 65,19" fill="#000" opacity=".72"/>
+        <line x1="60" y1="9" x2="60" y2="40" stroke="#000" stroke-width="2.5" opacity=".62"/>
+        <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif"
+              fill="#fff" letter-spacing="2">
+          <textPath href="#arc" startOffset="50%" text-anchor="middle">LOCATE ME</textPath>
+        </text>
+      </svg>
+    </div>
+    <div class="locate-hint">Tap to find hotels near your location</div>
+  </div>
+
+  <div id="geo" class="geo"></div>
+
+  <!-- Check-in date -->
+  <div class="fsec">
+    <div class="drow">
+      <span class="dlbl">Check-in</span>
+      <input type="date" id="checkin"/>
+    </div>
+  </div>
+
+  <!-- Chain filter pills -->
+  <div class="pills">
+    <div class="pill on" data-c="all"      onclick="setChain(this)">All</div>
+    <div class="pill"    data-c="hilton"   onclick="setChain(this)">Hilton</div>
+    <div class="pill"    data-c="marriott" onclick="setChain(this)">Marriott</div>
+  </div>
+
+  <div id="reshdr" class="reshdr"></div>
+  <div id="status"></div>
+  <div id="results" class="results"></div>
+
+  <button class="chgkey" onclick="clearKey()">Change API key</button>
+
+</div><!-- #app -->
+
+<script>
+/* ════════════════════════════
+   API KEY MANAGEMENT
+   Stored in localStorage so
+   user only enters it once.
+════════════════════════════ */
+const LS = '458th_ant_key';
+let APIKEY = localStorage.getItem(LS) || '';
+
+function saveKey() {
+  const v   = document.getElementById('ki').value.trim();
+  const err = document.getElementById('kerr');
+  if (!v.startsWith('sk-ant-')) {
+    err.textContent = 'That doesn\'t look right — Anthropic keys start with sk-ant-';
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  APIKEY = v;
+  localStorage.setItem(LS, v);
+  boot();
+}
+
+function clearKey() {
+  localStorage.removeItem(LS);
+  APIKEY = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('ks').style.display  = 'flex';
+  document.getElementById('ki').value = '';
+}
+
+document.getElementById('ki').addEventListener('keydown', e => {
+  if (e.key === 'Enter') saveKey();
+});
+
+function boot() {
+  document.getElementById('ks').style.display  = 'none';
+  document.getElementById('app').style.display = 'block';
+  const t  = new Date();
+  const ds = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  document.getElementById('checkin').value = ds;
+  document.getElementById('checkin').min   = ds;
+}
+
+// Auto-boot if key already saved
+if (APIKEY) boot();
+
+/* ════════════════════════════
+   APP STATE
+════════════════════════════ */
+let hotels = [], chain = 'all', lat = null, lng = null;
+
+/* ════════════════════════════
+   CHAIN FILTER
+════════════════════════════ */
+function setChain(el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  chain = el.dataset.c;
+  render();
+}
+
+/* ════════════════════════════
+   STAR RATING
+════════════════════════════ */
+function stars(r) {
+  if (!r) return '';
+  const n = Math.min(5, Math.round(parseFloat(r)));
+  return '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
+}
+
+/* ════════════════════════════
+   RENDER HOTEL CARDS
+════════════════════════════ */
+function render() {
+  const list = chain === 'all' ? hotels : hotels.filter(h => h.chain === chain);
+  const hdr  = document.getElementById('reshdr');
+  hdr.style.display = 'block';
+  hdr.textContent = list.length
+    ? `${list.length} propert${list.length === 1 ? 'y' : 'ies'} within 20 miles — nearest first`
+    : 'No properties match this filter.';
+
+  document.getElementById('results').innerHTML = list.map(h => {
+    const map  = `https://maps.google.com/?q=${encodeURIComponent(h.address)}`;
+    const isH  = h.chain === 'hilton';
+    const lbl  = isH ? 'Hilton' : 'Marriott';
+    const bc   = isH ? 'bh' : 'bm';
+    const st   = stars(h.stars);
+    const sn   = h.stars ? parseFloat(h.stars).toFixed(1) : '';
+    const d    = parseFloat(h.distance || 0).toFixed(1);
+
+    const av = h.available === true  ? '<span class="avy">✓ Available tonight</span>'
+             : h.available === false ? '<span class="avn">✗ Sold out</span>'
+             :                         '<span class="avu">Check availability</span>';
+
+    const mil = h.mil_rate
+      ? `<span class="rmil">${h.mil_rate} <span>mil/govt</span></span>`
+      : '<span class="rmil">Call for mil rate</span>';
+
+    const std = h.price ? `<span class="rstd">${h.price}</span>` : '';
+
+    const book = isH
+      ? `https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`
+      : `https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`;
+
+    return `<div class="hcard">
+      <div class="ctop">
+        <div class="cname">${h.name}</div>
+        <span class="badge ${bc}">${lbl}</span>
+      </div>
+      <div class="cmeta">
+        <span>${d} mi</span>
+        ${st ? `<span class="stars">${st}</span><span>${sn}</span>` : ''}
+        <span>${h.brand || lbl}</span>
+      </div>
+      <a class="caddr" href="${map}">📍 ${h.address}</a>
+      <div class="ratebox">
+        <div>
+          <div class="rlbl">Military / Govt rate</div>
+          ${mil}
+        </div>
+        ${std ? `<div style="text-align:right"><div class="rlbl">Standard rate</div>${std}</div>` : ''}
+      </div>
+      <div class="avrow">
+        ${av}
+        <a class="bbtn" href="${book}" target="_blank" rel="noopener">Book →</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ════════════════════════════
+   STATUS HELPERS
+════════════════════════════ */
+function load(msg) {
+  document.getElementById('status').innerHTML =
+    `<div class="lbox"><div class="spin"></div>${msg}</div>`;
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('reshdr').style.display = 'none';
+}
+
+function showErr(msg) {
+  document.getElementById('status').innerHTML = `<div class="ebox">${msg}</div>`;
+}
+
+/* ════════════════════════════
+   GEOLOCATION
+════════════════════════════ */
+function doLocate() {
+  if (!navigator.geolocation) {
+    showErr('Geolocation is not supported by this browser.');
+    return;
+  }
+  document.getElementById('dbw').classList.add('off');
+  load('Acquiring your location…');
+  document.getElementById('geo').textContent = '';
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      lat = pos.coords.latitude;
+      lng = pos.coords.longitude;
+      const ns = lat >= 0 ? 'N' : 'S';
+      const ew = lng >= 0 ? 'E' : 'W';
+      document.getElementById('geo').textContent =
+        `${Math.abs(lat).toFixed(4)}° ${ns}  ${Math.abs(lng).toFixed(4)}° ${ew}`;
+      doSearch();
+    },
+    e => {
+      document.getElementById('dbw').classList.remove('off');
+      const msgs = {
+        1: 'Location permission denied. Enable location access in your browser settings and try again.',
+        2: 'Location unavailable. Try again in a moment.',
+        3: 'Location request timed out. Try again.'
+      };
+      showErr(msgs[e.code] || 'Could not get your location.');
+    },
+    { enableHighAccuracy: true, timeout: 14000, maximumAge: 60000 }
+  );
+}
+
+/* ════════════════════════════
+   HOTEL SEARCH
+   Calls Anthropic API directly.
+   Works from https:// pages
+   (GitHub Pages, Netlify, etc.)
+════════════════════════════ */
+async function doSearch() {
+  const checkin = document.getElementById('checkin').value;
+  load('Finding Hilton &amp; Marriott properties near you…');
+  hotels = [];
+
+  const SYSTEM = `You are a hotel data assistant for US military travelers. Given GPS coordinates, return a JSON array of real Hilton and Marriott branded hotels within 20 miles. Include all sub-brands: Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry, Curio, Waldorf Astoria, Conrad, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points.
+
+Return ONLY valid JSON — no markdown, no preamble, no explanation.
+
+Schema:
+[{
+  "name": "Full property name",
+  "address": "Street address, City, State ZIP",
+  "chain": "hilton or marriott",
+  "brand": "Sub-brand name",
+  "distance": "X.X",
+  "stars": 3.5,
+  "available": true or false or null,
+  "price": "$XXX or null",
+  "mil_rate": "$XXX or null"
+}]
+
+Rules:
+- distance: actual miles from the coordinates, float, max 20.0
+- stars: 1.0–5.0 quality rating
+- available: true=likely available tonight, false=usually sold out, null=uncertain
+- price: standard rack rate per night
+- mil_rate: US government/military per diem rate estimate ($89–$229 typical)
+- Return 10–20 real named properties sorted by distance ascending (closest first)`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': APIKEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-ipc': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-haiku-20241022',
+        max_tokens: 2500,
+        system: SYSTEM,
+        messages: [{
+          role: 'user',
+          content: `Find all Hilton and Marriott hotels within 20 miles of: latitude ${lat.toFixed(5)}, longitude ${lng.toFixed(5)}. Check-in date: ${checkin}. Sort by distance, closest first.`
+        }]
+      })
+    });
+
+    // Handle auth errors
+    if (resp.status === 401) {
+      showErr('API key rejected by Anthropic. <a href="#" onclick="clearKey();return false;" style="color:var(--red);font-weight:600">Tap to update your key →</a>');
+      document.getElementById('dbw').classList.remove('off');
+      return;
+    }
+
+    if (!resp.ok) {
+      const e = await resp.json().catch(() => ({}));
+      throw new Error(e.error?.message || `Server error ${resp.status}`);
+    }
+
+    const data = await resp.json();
+    let text = (data.content || [])
+      .map(b => b.text || '')
+      .join('')
+      .replace(/```json|```/g, '')
+      .trim();
+
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch (_) {
+      const m = text.match(/\[[\s\S]*\]/);
+      if (m) parsed = JSON.parse(m[0]);
+      else throw new Error('Could not parse hotel data from response');
+    }
+
+    if (!Array.isArray(parsed) || !parsed.length) {
+      throw new Error('No hotels returned for this location');
+    }
+
+    hotels = parsed
+      .map(h => ({ ...h, chain: (h.chain || '').toLowerCase().trim() }))
+      .sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+
+    document.getElementById('status').innerHTML = '';
+    render();
+
+  } catch (e) {
+    showErr(`Search failed: ${e.message}. Check your connection and try again.`);
+  }
+
+  document.getElementById('dbw').classList.remove('off');
+}
+</script>
+</body>
+</html>
