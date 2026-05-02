@@ -31,8 +31,7 @@ body{
   padding-bottom:calc(20px + var(--sb));
   -webkit-text-size-adjust:100%; overscroll-behavior:none;
 }
-
-/* ── SKY ── */
+/* SKY */
 .sky{position:relative;height:88px;background:var(--navy);overflow:hidden;
      border-bottom:2.5px solid var(--red);padding-top:var(--st)}
 .cloud{position:absolute;background:rgba(255,255,255,.10);border-radius:40px;animation:drift linear infinite}
@@ -42,52 +41,27 @@ body{
 @keyframes drift{from{left:-130px}to{left:calc(100% + 130px)}}
 .jet{position:absolute;top:14px;animation:fly 9s linear infinite}
 @keyframes fly{0%{left:-200px}100%{left:calc(100% + 70px)}}
-
-/* ── PAGE HEADER ── */
+/* LAYOUT */
 .sq{text-align:center;font-size:13px;font-weight:700;color:var(--red);
     letter-spacing:.14em;padding:12px 16px 4px;text-transform:uppercase}
 .hdr{text-align:center;padding:2px 16px 12px;border-bottom:.5px solid var(--border)}
 .hdr-sub{font-size:12px;color:var(--txt2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
 .hdr-ttl{font-size:22px;font-weight:600}
-
-/* ── API KEY SCREEN ── */
-#ks{padding:28px 20px;display:flex;flex-direction:column;gap:16px}
-#ks h2{font-size:19px;font-weight:600;text-align:center}
-#ks p{font-size:13px;color:var(--txt2);line-height:1.65}
-#ks a{color:var(--link)}
-#ks code{font-family:monospace;font-size:12px;background:var(--bg);padding:1px 5px;border-radius:4px}
-.kr{display:flex;gap:8px}
-.kr input{flex:1;font-size:13px;font-family:monospace;padding:11px 12px;
-  border-radius:var(--r1);border:1px solid var(--border);background:var(--card);
-  color:var(--txt);outline:none;min-height:48px;}
-.kr input:focus{border-color:var(--red)}
-.btn-r{background:var(--red);color:#fff;border:none;border-radius:var(--r1);
-  padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;min-height:48px;white-space:nowrap;}
-.btn-r:active{opacity:.8}
-.knote{font-size:12px;color:var(--txt2);background:var(--bg);border-radius:var(--r1);padding:14px;line-height:1.75}
-.knote strong{color:var(--txt)}
-#kerr{color:var(--red);font-size:13px;display:none;padding:4px 0}
-
-/* ── MAIN APP ── */
-#app{display:none}
-
-/* ── LOCATE ── */
+/* LOCATE */
 .locate{display:flex;flex-direction:column;align-items:center;padding:22px 16px 10px;gap:10px}
 .dbw{position:relative;width:120px;height:120px;cursor:pointer;
      -webkit-user-select:none;user-select:none;transition:transform .12s ease;}
 .dbw:active{transform:scale(.91)}
 .dbw.off{opacity:.45;pointer-events:none}
 .locate-hint{font-size:13px;color:var(--txt2);text-align:center}
-
-/* ── FORM ── */
+/* FORM */
 .fsec{padding:8px 16px 4px}
 .drow{display:flex;align-items:center;gap:10px;background:var(--card);
-  border:.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;}
+      border:.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;}
 .dlbl{font-size:14px;color:var(--txt2);white-space:nowrap;flex-shrink:0}
 .drow input[type=date]{flex:1;font-size:15px;color:var(--txt);background:transparent;
   border:none;outline:none;-webkit-appearance:none;font-family:inherit;min-height:44px;}
-
-/* ── PILLS ── */
+/* PILLS */
 .pills{display:flex;gap:8px;padding:10px 16px 6px;justify-content:center}
 .pill{font-size:13px;padding:6px 18px;border-radius:20px;border:.5px solid var(--border);
   color:var(--txt2);cursor:pointer;background:var(--card);min-height:36px;
@@ -95,8 +69,7 @@ body{
   transition:background .15s,color .15s;}
 .pill.on{background:var(--txt);color:#fff;border-color:transparent}
 @media(prefers-color-scheme:dark){.pill.on{background:#f2f2f7;color:#1c1c1e}}
-
-/* ── RESULTS ── */
+/* RESULTS */
 .reshdr{text-align:center;font-size:13px;color:var(--txt2);padding:4px 16px 8px;display:none}
 .results{padding:0 16px;display:flex;flex-direction:column;gap:12px}
 .hcard{background:var(--card);border:.5px solid var(--border);border-radius:var(--r3);padding:14px 16px}
@@ -109,228 +82,147 @@ body{
 .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
 .caddr{font-size:13px;color:var(--link);text-decoration:none;display:block;margin-bottom:10px;line-height:1.4;word-break:break-word}
 .ratebox{background:var(--bg);border-radius:var(--r1);padding:10px 12px;margin-bottom:10px;
-  display:flex;justify-content:space-between;align-items:center}
+         display:flex;justify-content:space-between;align-items:center}
 .rlbl{font-size:11px;color:var(--txt2);margin-bottom:2px}
 .rmil{font-size:15px;font-weight:600;color:var(--green)}
 .rmil span{font-size:11px;font-weight:400;color:var(--txt2)}
 .rstd{font-size:13px;color:var(--txt2);text-decoration:line-through}
 .avrow{display:flex;justify-content:space-between;align-items:center;
-  border-top:.5px solid var(--border);padding-top:10px}
+       border-top:.5px solid var(--border);padding-top:10px}
 .avy{font-size:13px;color:var(--green);font-weight:500}
 .avn{font-size:13px;color:var(--red);font-weight:500}
 .avu{font-size:13px;color:var(--txt2)}
 .bbtn{font-size:13px;font-weight:500;padding:7px 16px;min-height:36px;
-  border-radius:var(--r1);border:.5px solid var(--border);background:var(--card);
-  color:var(--link);text-decoration:none;display:flex;align-items:center;}
+      border-radius:var(--r1);border:.5px solid var(--border);background:var(--card);
+      color:var(--link);text-decoration:none;display:flex;align-items:center;}
 .bbtn:active{opacity:.6}
-
-/* ── STATUS ── */
+/* STATUS */
 .lbox{text-align:center;padding:32px 16px;color:var(--txt2);font-size:14px}
 .spin{width:28px;height:28px;border:2.5px solid var(--border);border-top-color:var(--red);
-  border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
+      border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ebox{background:#fff0f0;border:.5px solid #ffb3b3;border-radius:var(--r2);
-  padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.5;}
+      padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.6;}
 @media(prefers-color-scheme:dark){.ebox{background:#3a1010;border-color:#8a3030;color:#f8a8a8}}
 .geo{font-size:12px;color:var(--txt2);text-align:center;padding:0 16px 6px}
-.chgkey{background:none;border:none;color:var(--txt2);font-size:11px;cursor:pointer;
-  text-decoration:underline;display:block;margin:16px auto 4px;padding:4px;}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════
-     API KEY SCREEN
-     Shown once on first visit.
-     Key stored in localStorage.
-════════════════════════════════ -->
-<div id="ks">
-  <div style="background:var(--navy);height:6px"></div>
-  <div style="background:var(--red);height:3px"></div>
-  <div style="text-align:center;padding:18px 0 0;font-size:44px">🎯</div>
-  <div style="text-align:center">
-    <div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.14em;
-                text-transform:uppercase;margin-bottom:6px">458th Airlift Squadron</div>
-    <h2>Hotel Finder</h2>
-  </div>
+<!-- ═══════════════════════════════════
+     ⚠️  ONE-TIME SETUP REQUIRED
+     Replace WORKER_URL_HERE below with
+     your Cloudflare Worker URL.
+     Example:
+     https://hotel-proxy.yourname.workers.dev
+════════════════════════════════════ -->
+<script>
+  const WORKER_URL = 'hotel-proxy.gmascagni.workers.dev';
+</script>
 
-  <p>Enter your <strong>Anthropic API key</strong> once and this app will remember it. Your key never leaves your browser — it goes only to Anthropic's servers when you search.</p>
-
-  <div class="kr">
-    <input type="password" id="ki" placeholder="sk-ant-api03-…"
-           autocomplete="off" autocorrect="off" spellcheck="false"/>
-    <button class="btn-r" onclick="saveKey()">Save</button>
-  </div>
-  <div id="kerr"></div>
-
-  <div class="knote">
-    <strong>Get your free API key:</strong><br>
-    1. Go to <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com/settings/keys</a><br>
-    2. Sign in → click <strong>Create Key</strong><br>
-    3. Copy the key (starts with <code>sk-ant-</code>) and paste above<br><br>
-    <strong>First-time cost:</strong> New accounts get free credits. After that, each hotel search costs roughly $0.001 — less than a tenth of a penny.<br><br>
-    Your key is saved to this browser's local storage and is never shared or logged.
+<!-- Animated sky with USAF C-21A -->
+<div class="sky">
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="jet">
+    <svg width="190" height="60" viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="182,28 30,18 24,28 30,38" fill="#8a9bb0"/>
+      <polygon points="182,28 30,18 95,28" fill="#b0bec8"/>
+      <rect x="24" y="25" width="158" height="6" rx="1" fill="#fff"/>
+      <rect x="24" y="25" width="158" height="2" rx="1" fill="#dce6ee"/>
+      <polygon points="24,25 4,13 14,25" fill="#8a9bb0"/>
+      <polygon points="24,31 4,43 14,31" fill="#8a9bb0"/>
+      <polygon points="58,25 46,11 82,25" fill="#7a8ea3"/>
+      <polygon points="58,31 46,46 82,31" fill="#7a8ea3"/>
+      <polygon points="66,11 54,4 70,11" fill="#6a7e93"/>
+      <rect x="128" y="20" width="14" height="8" rx="2" fill="#5a6a7a"/>
+      <rect x="128" y="34" width="14" height="8" rx="2" fill="#5a6a7a"/>
+      <rect x="140" y="21" width="6" height="6" rx="1" fill="#3a4a5a"/>
+      <rect x="140" y="35" width="6" height="6" rx="1" fill="#3a4a5a"/>
+      <rect x="160" y="24" width="20" height="8" rx="3" fill="#6a7a8a"/>
+      <rect x="176" y="26" width="4" height="4" rx="1" fill="#2a3a4a"/>
+      <rect x="150" y="15" width="4" height="14" rx="1" fill="#7a8a9a"/>
+      <polygon points="150,15 154,15 152,8" fill="#8a9aaa"/>
+      <rect x="143" y="13" width="7" height="3" rx="1" fill="#7a8a9a"/>
+      <rect x="143" y="42" width="7" height="3" rx="1" fill="#7a8a9a"/>
+      <rect x="28" y="25" width="8" height="6" rx="1" fill="#4a6a8a"/>
+      <circle cx="32" cy="28" r="2.5" fill="#2a4a6a"/>
+      <circle cx="32" cy="28" r="1" fill="#6a9aba"/>
+      <text x="72" y="30" font-size="5.5" fill="#1c3a58" font-family="sans-serif"
+            font-weight="bold" letter-spacing=".5">U.S. AIR FORCE</text>
+      <rect x="108" y="21" width="12" height="8" rx=".5" fill="#fff"/>
+      <polygon points="108,25 114,21 114,29" fill="#c8102e"/>
+      <polygon points="114,25 120,21 120,29" fill="#c8102e" opacity=".6"/>
+      <circle cx="114" cy="25" r="2.2" fill="#1c3a58"/>
+      <text x="155" y="22" font-size="4.5" fill="#dce6ee" font-family="sans-serif" font-weight="bold">C-21A</text>
+      <line x1="24" y1="28" x2="4" y2="28" stroke="#9ab0c4" stroke-width=".8" stroke-dasharray="3,2" opacity=".7"/>
+    </svg>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     MAIN APP
-════════════════════════════════ -->
-<div id="app">
+<div class="sq">458th Airlift Squadron</div>
+<div class="hdr">
+  <div class="hdr-sub">Tonight's Stay</div>
+  <div class="hdr-ttl">Hilton &amp; Marriott Finder</div>
+</div>
 
-  <!-- Animated sky with C-21A -->
-  <div class="sky">
-    <div class="cloud c1"></div>
-    <div class="cloud c2"></div>
-    <div class="cloud c3"></div>
-    <div class="jet">
-      <svg width="190" height="60" viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="182,28 30,18 24,28 30,38" fill="#8a9bb0"/>
-        <polygon points="182,28 30,18 95,28" fill="#b0bec8"/>
-        <rect x="24" y="25" width="158" height="6" rx="1" fill="#fff"/>
-        <rect x="24" y="25" width="158" height="2" rx="1" fill="#dce6ee"/>
-        <polygon points="24,25 4,13 14,25" fill="#8a9bb0"/>
-        <polygon points="24,31 4,43 14,31" fill="#8a9bb0"/>
-        <polygon points="58,25 46,11 82,25" fill="#7a8ea3"/>
-        <polygon points="58,31 46,46 82,31" fill="#7a8ea3"/>
-        <polygon points="66,11 54,4 70,11" fill="#6a7e93"/>
-        <rect x="128" y="20" width="14" height="8" rx="2" fill="#5a6a7a"/>
-        <rect x="128" y="34" width="14" height="8" rx="2" fill="#5a6a7a"/>
-        <rect x="140" y="21" width="6" height="6" rx="1" fill="#3a4a5a"/>
-        <rect x="140" y="35" width="6" height="6" rx="1" fill="#3a4a5a"/>
-        <rect x="160" y="24" width="20" height="8" rx="3" fill="#6a7a8a"/>
-        <rect x="176" y="26" width="4" height="4" rx="1" fill="#2a3a4a"/>
-        <rect x="150" y="15" width="4" height="14" rx="1" fill="#7a8a9a"/>
-        <polygon points="150,15 154,15 152,8" fill="#8a9aaa"/>
-        <rect x="143" y="13" width="7" height="3" rx="1" fill="#7a8a9a"/>
-        <rect x="143" y="42" width="7" height="3" rx="1" fill="#7a8a9a"/>
-        <rect x="28" y="25" width="8" height="6" rx="1" fill="#4a6a8a"/>
-        <circle cx="32" cy="28" r="2.5" fill="#2a4a6a"/>
-        <circle cx="32" cy="28" r="1" fill="#6a9aba"/>
-        <text x="72" y="30" font-size="5.5" fill="#1c3a58" font-family="sans-serif"
-              font-weight="bold" letter-spacing=".5">U.S. AIR FORCE</text>
-        <rect x="108" y="21" width="12" height="8" rx=".5" fill="#fff"/>
-        <polygon points="108,25 114,21 114,29" fill="#c8102e"/>
-        <polygon points="114,25 120,21 120,29" fill="#c8102e" opacity=".6"/>
-        <circle cx="114" cy="25" r="2.2" fill="#1c3a58"/>
-        <text x="155" y="22" font-size="4.5" fill="#dce6ee" font-family="sans-serif" font-weight="bold">C-21A</text>
-        <line x1="24" y1="28" x2="4" y2="28" stroke="#9ab0c4" stroke-width=".8" stroke-dasharray="3,2" opacity=".7"/>
-      </svg>
-    </div>
+<!-- Dartboard locate button -->
+<div class="locate">
+  <div class="dbw" id="dbw" onclick="doLocate()" role="button" aria-label="Locate me">
+    <svg viewBox="0 0 120 120" style="display:block;width:120px;height:120px"
+         xmlns="http://www.w3.org/2000/svg">
+      <defs><path id="arc" d="M 12,60 A 48,48 0 0,1 108,60"/></defs>
+      <circle cx="60" cy="60" r="60" fill="#c8102e"/>
+      <circle cx="60" cy="60" r="49" fill="#fff"/>
+      <circle cx="60" cy="60" r="39" fill="#c8102e"/>
+      <circle cx="60" cy="60" r="29" fill="#fff"/>
+      <circle cx="60" cy="60" r="19" fill="#c8102e"/>
+      <circle cx="60" cy="60" r="9"  fill="#fff"/>
+      <circle cx="60" cy="60" r="4"  fill="#c8102e"/>
+      <line x1="60" y1="1"  x2="60" y2="119" stroke="#000" stroke-width="1" opacity=".13"/>
+      <line x1="1"  y1="60" x2="119" y2="60" stroke="#000" stroke-width="1" opacity=".13"/>
+      <polygon points="60,7 55,19 65,19" fill="#000" opacity=".72"/>
+      <line x1="60" y1="9" x2="60" y2="40" stroke="#000" stroke-width="2.5" opacity=".62"/>
+      <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif"
+            fill="#fff" letter-spacing="2">
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">LOCATE ME</textPath>
+      </text>
+    </svg>
   </div>
+  <div class="locate-hint">Tap to find hotels near your location</div>
+</div>
 
-  <div class="sq">458th Airlift Squadron</div>
-  <div class="hdr">
-    <div class="hdr-sub">Tonight's Stay</div>
-    <div class="hdr-ttl">Hilton &amp; Marriott Finder</div>
+<div id="geo" class="geo"></div>
+
+<div class="fsec">
+  <div class="drow">
+    <span class="dlbl">Check-in</span>
+    <input type="date" id="checkin"/>
   </div>
+</div>
 
-  <!-- Dartboard locate button -->
-  <div class="locate">
-    <div class="dbw" id="dbw" onclick="doLocate()" role="button" aria-label="Locate me">
-      <svg viewBox="0 0 120 120" style="display:block;width:120px;height:120px"
-           xmlns="http://www.w3.org/2000/svg">
-        <defs><path id="arc" d="M 12,60 A 48,48 0 0,1 108,60"/></defs>
-        <circle cx="60" cy="60" r="60" fill="#c8102e"/>
-        <circle cx="60" cy="60" r="49" fill="#fff"/>
-        <circle cx="60" cy="60" r="39" fill="#c8102e"/>
-        <circle cx="60" cy="60" r="29" fill="#fff"/>
-        <circle cx="60" cy="60" r="19" fill="#c8102e"/>
-        <circle cx="60" cy="60" r="9"  fill="#fff"/>
-        <circle cx="60" cy="60" r="4"  fill="#c8102e"/>
-        <line x1="60" y1="1"  x2="60" y2="119" stroke="#000" stroke-width="1" opacity=".13"/>
-        <line x1="1"  y1="60" x2="119" y2="60" stroke="#000" stroke-width="1" opacity=".13"/>
-        <polygon points="60,7 55,19 65,19" fill="#000" opacity=".72"/>
-        <line x1="60" y1="9" x2="60" y2="40" stroke="#000" stroke-width="2.5" opacity=".62"/>
-        <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif"
-              fill="#fff" letter-spacing="2">
-          <textPath href="#arc" startOffset="50%" text-anchor="middle">LOCATE ME</textPath>
-        </text>
-      </svg>
-    </div>
-    <div class="locate-hint">Tap to find hotels near your location</div>
-  </div>
+<div class="pills">
+  <div class="pill on" data-c="all"      onclick="setChain(this)">All</div>
+  <div class="pill"    data-c="hilton"   onclick="setChain(this)">Hilton</div>
+  <div class="pill"    data-c="marriott" onclick="setChain(this)">Marriott</div>
+</div>
 
-  <div id="geo" class="geo"></div>
-
-  <!-- Check-in date -->
-  <div class="fsec">
-    <div class="drow">
-      <span class="dlbl">Check-in</span>
-      <input type="date" id="checkin"/>
-    </div>
-  </div>
-
-  <!-- Chain filter pills -->
-  <div class="pills">
-    <div class="pill on" data-c="all"      onclick="setChain(this)">All</div>
-    <div class="pill"    data-c="hilton"   onclick="setChain(this)">Hilton</div>
-    <div class="pill"    data-c="marriott" onclick="setChain(this)">Marriott</div>
-  </div>
-
-  <div id="reshdr" class="reshdr"></div>
-  <div id="status"></div>
-  <div id="results" class="results"></div>
-
-  <button class="chgkey" onclick="clearKey()">Change API key</button>
-
-</div><!-- #app -->
+<div id="reshdr" class="reshdr"></div>
+<div id="status"></div>
+<div id="results" class="results"></div>
 
 <script>
-/* ════════════════════════════
-   API KEY MANAGEMENT
-   Stored in localStorage so
-   user only enters it once.
-════════════════════════════ */
-const LS = '458th_ant_key';
-let APIKEY = localStorage.getItem(LS) || '';
+/* ── Init date ── */
+const t  = new Date();
+const ds = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+document.getElementById('checkin').value = ds;
+document.getElementById('checkin').min   = ds;
 
-function saveKey() {
-  const v   = document.getElementById('ki').value.trim();
-  const err = document.getElementById('kerr');
-  if (!v.startsWith('sk-ant-')) {
-    err.textContent = 'That doesn\'t look right — Anthropic keys start with sk-ant-';
-    err.style.display = 'block';
-    return;
-  }
-  err.style.display = 'none';
-  APIKEY = v;
-  localStorage.setItem(LS, v);
-  boot();
-}
-
-function clearKey() {
-  localStorage.removeItem(LS);
-  APIKEY = '';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('ks').style.display  = 'flex';
-  document.getElementById('ki').value = '';
-}
-
-document.getElementById('ki').addEventListener('keydown', e => {
-  if (e.key === 'Enter') saveKey();
-});
-
-function boot() {
-  document.getElementById('ks').style.display  = 'none';
-  document.getElementById('app').style.display = 'block';
-  const t  = new Date();
-  const ds = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
-  document.getElementById('checkin').value = ds;
-  document.getElementById('checkin').min   = ds;
-}
-
-// Auto-boot if key already saved
-if (APIKEY) boot();
-
-/* ════════════════════════════
-   APP STATE
-════════════════════════════ */
+/* ── State ── */
 let hotels = [], chain = 'all', lat = null, lng = null;
 
-/* ════════════════════════════
-   CHAIN FILTER
-════════════════════════════ */
+/* ── Filter ── */
 function setChain(el) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
   el.classList.add('on');
@@ -338,18 +230,14 @@ function setChain(el) {
   render();
 }
 
-/* ════════════════════════════
-   STAR RATING
-════════════════════════════ */
+/* ── Stars ── */
 function stars(r) {
   if (!r) return '';
   const n = Math.min(5, Math.round(parseFloat(r)));
   return '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
 }
 
-/* ════════════════════════════
-   RENDER HOTEL CARDS
-════════════════════════════ */
+/* ── Render cards ── */
 function render() {
   const list = chain === 'all' ? hotels : hotels.filter(h => h.chain === chain);
   const hdr  = document.getElementById('reshdr');
@@ -359,13 +247,13 @@ function render() {
     : 'No properties match this filter.';
 
   document.getElementById('results').innerHTML = list.map(h => {
-    const map  = `https://maps.google.com/?q=${encodeURIComponent(h.address)}`;
-    const isH  = h.chain === 'hilton';
-    const lbl  = isH ? 'Hilton' : 'Marriott';
-    const bc   = isH ? 'bh' : 'bm';
-    const st   = stars(h.stars);
-    const sn   = h.stars ? parseFloat(h.stars).toFixed(1) : '';
-    const d    = parseFloat(h.distance || 0).toFixed(1);
+    const map = `https://maps.google.com/?q=${encodeURIComponent(h.address)}`;
+    const isH = h.chain === 'hilton';
+    const lbl = isH ? 'Hilton' : 'Marriott';
+    const bc  = isH ? 'bh' : 'bm';
+    const st  = stars(h.stars);
+    const sn  = h.stars ? parseFloat(h.stars).toFixed(1) : '';
+    const d   = parseFloat(h.distance || 0).toFixed(1);
 
     const av = h.available === true  ? '<span class="avy">✓ Available tonight</span>'
              : h.available === false ? '<span class="avn">✗ Sold out</span>'
@@ -393,10 +281,7 @@ function render() {
       </div>
       <a class="caddr" href="${map}">📍 ${h.address}</a>
       <div class="ratebox">
-        <div>
-          <div class="rlbl">Military / Govt rate</div>
-          ${mil}
-        </div>
+        <div><div class="rlbl">Military / Govt rate</div>${mil}</div>
         ${std ? `<div style="text-align:right"><div class="rlbl">Standard rate</div>${std}</div>` : ''}
       </div>
       <div class="avrow">
@@ -407,23 +292,18 @@ function render() {
   }).join('');
 }
 
-/* ════════════════════════════
-   STATUS HELPERS
-════════════════════════════ */
+/* ── Status helpers ── */
 function load(msg) {
   document.getElementById('status').innerHTML =
     `<div class="lbox"><div class="spin"></div>${msg}</div>`;
   document.getElementById('results').innerHTML = '';
   document.getElementById('reshdr').style.display = 'none';
 }
-
 function showErr(msg) {
   document.getElementById('status').innerHTML = `<div class="ebox">${msg}</div>`;
 }
 
-/* ════════════════════════════
-   GEOLOCATION
-════════════════════════════ */
+/* ── Geolocation ── */
 function doLocate() {
   if (!navigator.geolocation) {
     showErr('Geolocation is not supported by this browser.');
@@ -446,9 +326,9 @@ function doLocate() {
     e => {
       document.getElementById('dbw').classList.remove('off');
       const msgs = {
-        1: 'Location permission denied. Enable location access in your browser settings and try again.',
+        1: 'Location permission denied. Enable location access in your browser settings.',
         2: 'Location unavailable. Try again in a moment.',
-        3: 'Location request timed out. Try again.'
+        3: 'Location timed out. Try again.'
       };
       showErr(msgs[e.code] || 'Could not get your location.');
     },
@@ -456,16 +336,18 @@ function doLocate() {
   );
 }
 
-/* ════════════════════════════
-   HOTEL SEARCH
-   Calls Anthropic API directly.
-   Works from https:// pages
-   (GitHub Pages, Netlify, etc.)
-════════════════════════════ */
+/* ── Hotel search via Cloudflare Worker proxy ── */
 async function doSearch() {
   const checkin = document.getElementById('checkin').value;
   load('Finding Hilton &amp; Marriott properties near you…');
   hotels = [];
+
+  // Check worker URL has been configured
+  if (!WORKER_URL || WORKER_URL === 'WORKER_URL_HERE') {
+    showErr('⚙️ Setup required: Open index.html and replace <strong>WORKER_URL_HERE</strong> with your Cloudflare Worker URL. See worker.js for instructions.');
+    document.getElementById('dbw').classList.remove('off');
+    return;
+  }
 
   const SYSTEM = `You are a hotel data assistant for US military travelers. Given GPS coordinates, return a JSON array of real Hilton and Marriott branded hotels within 20 miles. Include all sub-brands: Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry, Curio, Waldorf Astoria, Conrad, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points.
 
@@ -490,17 +372,12 @@ Rules:
 - available: true=likely available tonight, false=usually sold out, null=uncertain
 - price: standard rack rate per night
 - mil_rate: US government/military per diem rate estimate ($89–$229 typical)
-- Return 10–20 real named properties sorted by distance ascending (closest first)`;
+- Return 10–20 real named properties sorted by distance ascending`;
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch(WORKER_URL, {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': APIKEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-ipc': 'true'
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-3-5-haiku-20241022',
         max_tokens: 2500,
@@ -512,19 +389,15 @@ Rules:
       })
     });
 
-    // Handle auth errors
-    if (resp.status === 401) {
-      showErr('API key rejected by Anthropic. <a href="#" onclick="clearKey();return false;" style="color:var(--red);font-weight:600">Tap to update your key →</a>');
-      document.getElementById('dbw').classList.remove('off');
-      return;
-    }
-
     if (!resp.ok) {
       const e = await resp.json().catch(() => ({}));
       throw new Error(e.error?.message || `Server error ${resp.status}`);
     }
 
     const data = await resp.json();
+
+    if (data.error) throw new Error(data.error.message || 'API error');
+
     let text = (data.content || [])
       .map(b => b.text || '')
       .join('')
@@ -537,7 +410,7 @@ Rules:
     } catch (_) {
       const m = text.match(/\[[\s\S]*\]/);
       if (m) parsed = JSON.parse(m[0]);
-      else throw new Error('Could not parse hotel data from response');
+      else throw new Error('Could not parse hotel data');
     }
 
     if (!Array.isArray(parsed) || !parsed.length) {
