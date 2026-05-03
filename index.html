@@ -14,54 +14,90 @@
   --red:#c8102e; --navy:#1c3a58;
   --bg:#f5f5f7; --card:#fff; --border:rgba(0,0,0,0.10);
   --txt:#1a1a1a; --txt2:#6e6e73; --link:#0071e3;
-  --green:#1a7a3c; --gold:#b8860b;
+  --green:#1a7a3c; --gold:#b8860b; --amber:#c8780a;
   --r1:8px; --r2:12px; --r3:16px;
   --sb:env(safe-area-inset-bottom,0px);
   --st:env(safe-area-inset-top,0px);
 }
 @media(prefers-color-scheme:dark){
   :root{ --bg:#1c1c1e; --card:#2c2c2e; --border:rgba(255,255,255,0.12);
-    --txt:#f2f2f7; --txt2:#aeaeb2; --link:#60a8fb; --green:#30d158; --gold:#ffd60a; }
+    --txt:#f2f2f7; --txt2:#aeaeb2; --link:#60a8fb;
+    --green:#30d158; --gold:#ffd60a; --amber:#ff9f0a; }
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   background:var(--bg);color:var(--txt);
   padding-bottom:calc(20px + var(--sb));
-  -webkit-text-size-adjust:100%; overscroll-behavior:none;
-}
-/* SKY */
-.sky{position:relative;height:88px;background:var(--navy);overflow:hidden;
-     border-bottom:2.5px solid var(--red);padding-top:var(--st)}
+  -webkit-text-size-adjust:100%;overscroll-behavior:none;}
+
+/* ── CHROME BANNER ── */
+#chromeBanner{display:none;background:#1a3a5c;color:#fff;
+  padding:10px 16px;font-size:13px;line-height:1.5;
+  flex-direction:column;gap:8px;}
+#chromeBanner a{display:inline-block;background:var(--red);color:#fff;
+  padding:8px 16px;border-radius:var(--r1);font-weight:600;
+  text-decoration:none;font-size:13px;text-align:center;}
+.dismiss{background:none;border:none;color:rgba(255,255,255,.6);
+  font-size:12px;cursor:pointer;padding:0;text-decoration:underline;}
+
+/* ── SKY ── */
+.sky{position:relative;height:100px;background:var(--navy);overflow:hidden;
+  border-bottom:2.5px solid var(--red);padding-top:var(--st)}
 .cloud{position:absolute;background:rgba(255,255,255,.10);border-radius:40px;animation:drift linear infinite}
-.c1{width:70px;height:14px;top:20px;animation-duration:20s;animation-delay:-5s}
-.c2{width:44px;height:11px;top:46px;animation-duration:28s;animation-delay:-14s}
-.c3{width:90px;height:13px;top:30px;animation-duration:24s;animation-delay:-9s}
+.c1{width:70px;height:14px;top:22px;animation-duration:20s;animation-delay:-5s}
+.c2{width:44px;height:11px;top:52px;animation-duration:28s;animation-delay:-14s}
+.c3{width:90px;height:13px;top:34px;animation-duration:24s;animation-delay:-9s}
 @keyframes drift{from{left:-130px}to{left:calc(100% + 130px)}}
-.jet{position:absolute;top:14px;animation:fly 9s linear infinite}
-@keyframes fly{0%{left:-200px}100%{left:calc(100% + 70px)}}
-/* LAYOUT */
+.jet{position:absolute;top:10px;animation:fly 12s linear infinite}
+@keyframes fly{0%{left:calc(100% + 60px)}100%{left:-240px}}
+
+/* ── HEADER ── */
 .sq{text-align:center;font-size:13px;font-weight:700;color:var(--red);
-    letter-spacing:.14em;padding:12px 16px 4px;text-transform:uppercase}
+  letter-spacing:.14em;padding:12px 16px 4px;text-transform:uppercase}
 .hdr{text-align:center;padding:2px 16px 12px;border-bottom:.5px solid var(--border)}
 .hdr-sub{font-size:12px;color:var(--txt2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
 .hdr-ttl{font-size:22px;font-weight:600}
-/* LOCATE */
-.locate{display:flex;flex-direction:column;align-items:center;padding:22px 16px 10px;gap:10px}
+
+/* ── PER DIEM BANNER ── */
+#pdBanner{display:none;margin:10px 16px 0;
+  background:linear-gradient(135deg,#1a3a5c,#0d2a4a);
+  border-radius:var(--r2);padding:12px 14px;border-left:4px solid var(--gold);}
+.pd-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.6);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.pd-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.pd-loc{font-size:13px;color:rgba(255,255,255,.85);font-weight:500;flex:1}
+.pd-rates{display:flex;gap:20px}
+.pd-item{text-align:right}
+.pd-lbl{font-size:10px;color:rgba(255,255,255,.5)}
+.pd-val{font-size:17px;font-weight:700;color:var(--gold)}
+
+/* ── LOCATE ── */
+.locate{display:flex;flex-direction:column;align-items:center;padding:20px 16px 8px;gap:10px}
 .dbw{position:relative;width:120px;height:120px;cursor:pointer;
-     -webkit-user-select:none;user-select:none;transition:transform .12s ease;}
+  -webkit-user-select:none;user-select:none;transition:transform .12s ease;}
 .dbw:active{transform:scale(.91)}
 .dbw.off{opacity:.45;pointer-events:none}
 .locate-hint{font-size:13px;color:var(--txt2);text-align:center}
-/* FORM */
+
+/* ── IOS HELP ── */
+#iosHelp{display:none;margin:8px 16px;background:#fff8e1;border:.5px solid #f0c040;
+  border-radius:var(--r2);padding:12px 14px;font-size:13px;color:#7a5c00;line-height:1.6}
+#iosHelp strong{display:block;margin-bottom:4px;font-size:14px}
+#iosHelp ol{padding-left:18px;margin-top:4px}
+#iosHelp li{margin-bottom:3px}
+@media(prefers-color-scheme:dark){
+  #iosHelp{background:#3a2e00;border-color:#7a6000;color:#ffd60a}}
+
+/* ── FORM ── */
 .fsec{padding:8px 16px 4px}
 .drow{display:flex;align-items:center;gap:10px;background:var(--card);
-      border:.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;}
+  border:.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;}
 .dlbl{font-size:14px;color:var(--txt2);white-space:nowrap;flex-shrink:0}
 .drow input[type=date]{flex:1;font-size:15px;color:var(--txt);background:transparent;
   border:none;outline:none;-webkit-appearance:none;font-family:inherit;min-height:44px;}
-/* PILLS */
+
+/* ── PILLS ── */
 .pills{display:flex;gap:8px;padding:10px 16px 6px;justify-content:center}
 .pill{font-size:13px;padding:6px 18px;border-radius:20px;border:.5px solid var(--border);
   color:var(--txt2);cursor:pointer;background:var(--card);min-height:36px;
@@ -69,94 +105,229 @@ body{
   transition:background .15s,color .15s;}
 .pill.on{background:var(--txt);color:#fff;border-color:transparent}
 @media(prefers-color-scheme:dark){.pill.on{background:#f2f2f7;color:#1c1c1e}}
-/* RESULTS */
+
+/* ── RESULTS ── */
 .reshdr{text-align:center;font-size:13px;color:var(--txt2);padding:4px 16px 8px;display:none}
 .results{padding:0 16px;display:flex;flex-direction:column;gap:12px}
+.leg-row{display:none;justify-content:center;gap:14px;padding:2px 16px 6px;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt2)}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+/* ── HOTEL CARD ── */
 .hcard{background:var(--card);border:.5px solid var(--border);border-radius:var(--r3);padding:14px 16px}
-.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
-.cname{font-size:15px;font-weight:600;line-height:1.3}
-.badge{font-size:11px;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;font-weight:600}
-.bh{background:#ddeafc;color:#0d3b8a} .bm{background:#fcdede;color:#8a0d0d}
-@media(prefers-color-scheme:dark){.bh{background:#0d3b8a;color:#a8c8f8}.bm{background:#8a0d0d;color:#f8a8a8}}
-.cmeta{font-size:12px;color:var(--txt2);margin-bottom:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.hcard.pd-ok{border:2px solid #1a7a3c}
+.hcard.pd-no{border:2px solid var(--amber)}
+@media(prefers-color-scheme:dark){
+  .hcard.pd-ok{border-color:#30d158}.hcard.pd-no{border-color:#ff9f0a}}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.cname{font-size:15px;font-weight:600;line-height:1.3;flex:1}
+.badges{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:11px;padding:3px 8px;border-radius:6px;white-space:nowrap;font-weight:600}
+.bh{background:#ddeafc;color:#0d3b8a}.bm{background:#fcdede;color:#8a0d0d}
+.bpd-ok{background:#d4edda;color:#155724}.bpd-no{background:#fff3cd;color:#856404}
+@media(prefers-color-scheme:dark){
+  .bh{background:#0d3b8a;color:#a8c8f8}.bm{background:#8a0d0d;color:#f8a8a8}
+  .bpd-ok{background:#155724;color:#a8e6b8}.bpd-no{background:#5a4000;color:#ffd060}}
+.cmeta{font-size:12px;color:var(--txt2);margin-bottom:8px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
-.caddr{font-size:13px;color:var(--link);text-decoration:none;display:block;margin-bottom:10px;line-height:1.4;word-break:break-word}
-.ratebox{background:var(--bg);border-radius:var(--r1);padding:10px 12px;margin-bottom:10px;
-         display:flex;justify-content:space-between;align-items:center}
-.rlbl{font-size:11px;color:var(--txt2);margin-bottom:2px}
-.rmil{font-size:15px;font-weight:600;color:var(--green)}
-.rmil span{font-size:11px;font-weight:400;color:var(--txt2)}
+.caddr{font-size:13px;color:var(--link);text-decoration:none;display:block;
+  margin-bottom:10px;line-height:1.4;word-break:break-word}
+
+/* ── RATE COMPARE ── */
+.rate-box{background:var(--bg);border-radius:var(--r1);padding:10px 12px;margin-bottom:10px}
+.rate-cols{display:flex;gap:0;align-items:stretch}
+.rate-col{flex:1;padding:0 8px}
+.rate-col:first-child{padding-left:0}
+.rate-col:last-child{padding-right:0}
+.rate-divider{width:1px;background:var(--border);flex-shrink:0;margin:2px 0}
+.rlbl{font-size:10px;color:var(--txt2);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.rmil{font-size:16px;font-weight:700;color:var(--green)}
 .rstd{font-size:13px;color:var(--txt2);text-decoration:line-through}
+.rpd{font-size:16px;font-weight:700;color:var(--gold)}
+.verdict{display:flex;align-items:center;gap:8px;margin-top:8px;
+  padding:7px 10px;border-radius:var(--r1);border:1.5px solid var(--border)}
+.verdict.ok{border-color:var(--green);background:rgba(26,122,60,.07)}
+.verdict.no{border-color:var(--amber);background:rgba(200,120,10,.07)}
+@media(prefers-color-scheme:dark){
+  .verdict.ok{background:rgba(48,209,88,.08)}.verdict.no{background:rgba(255,159,10,.08)}}
+.verdict-icon{font-size:18px;flex-shrink:0}
+.verdict-txt{font-size:12px;line-height:1.4}
+.verdict-txt strong{font-size:13px}
+
 .avrow{display:flex;justify-content:space-between;align-items:center;
-       border-top:.5px solid var(--border);padding-top:10px}
+  border-top:.5px solid var(--border);padding-top:10px}
 .avy{font-size:13px;color:var(--green);font-weight:500}
 .avn{font-size:13px;color:var(--red);font-weight:500}
 .avu{font-size:13px;color:var(--txt2)}
 .bbtn{font-size:13px;font-weight:500;padding:7px 16px;min-height:36px;
-      border-radius:var(--r1);border:.5px solid var(--border);background:var(--card);
-      color:var(--link);text-decoration:none;display:flex;align-items:center;}
+  border-radius:var(--r1);border:.5px solid var(--border);background:var(--card);
+  color:var(--link);text-decoration:none;display:flex;align-items:center;}
 .bbtn:active{opacity:.6}
-/* STATUS */
+
+/* ── STATUS ── */
 .lbox{text-align:center;padding:32px 16px;color:var(--txt2);font-size:14px}
 .spin{width:28px;height:28px;border:2.5px solid var(--border);border-top-color:var(--red);
-      border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
+  border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ebox{background:#fff0f0;border:.5px solid #ffb3b3;border-radius:var(--r2);
-      padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.6;}
+  padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.5;}
 @media(prefers-color-scheme:dark){.ebox{background:#3a1010;border-color:#8a3030;color:#f8a8a8}}
 .geo{font-size:12px;color:var(--txt2);text-align:center;padding:0 16px 6px}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════
-     ⚠️  ONE-TIME SETUP REQUIRED
-     Replace WORKER_URL_HERE below with
-     your Cloudflare Worker URL.
-     Example:
-     https://hotel-proxy.yourname.workers.dev
-════════════════════════════════════ -->
-<script>
-  const WORKER_URL = 'https://hotel-proxy.gmascagni.workers.dev';
-</script>
+<script>const WORKER_URL='https://hotel-proxy.gmascagni.workers.dev';</script>
 
-<!-- Animated sky with USAF C-21A -->
+<!-- iOS Chrome Banner -->
+<div id="chromeBanner">
+  <div><strong>📍 Better location support in Chrome</strong><br>
+  Safari on iOS sometimes blocks location for web apps. Tap below to open in Chrome.</div>
+  <a id="chromeLink" href="#">Open in Chrome</a>
+  <button class="dismiss" onclick="document.getElementById('chromeBanner').style.display='none'">Dismiss</button>
+</div>
+
+<!-- Sky with Learjet 35 / C-21A -->
 <div class="sky">
   <div class="cloud c1"></div>
   <div class="cloud c2"></div>
   <div class="cloud c3"></div>
   <div class="jet">
-    <svg width="190" height="60" viewBox="0 0 190 60" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="182,28 30,18 24,28 30,38" fill="#8a9bb0"/>
-      <polygon points="182,28 30,18 95,28" fill="#b0bec8"/>
-      <rect x="24" y="25" width="158" height="6" rx="1" fill="#fff"/>
-      <rect x="24" y="25" width="158" height="2" rx="1" fill="#dce6ee"/>
-      <polygon points="24,25 4,13 14,25" fill="#8a9bb0"/>
-      <polygon points="24,31 4,43 14,31" fill="#8a9bb0"/>
-      <polygon points="58,25 46,11 82,25" fill="#7a8ea3"/>
-      <polygon points="58,31 46,46 82,31" fill="#7a8ea3"/>
-      <polygon points="66,11 54,4 70,11" fill="#6a7e93"/>
-      <rect x="128" y="20" width="14" height="8" rx="2" fill="#5a6a7a"/>
-      <rect x="128" y="34" width="14" height="8" rx="2" fill="#5a6a7a"/>
-      <rect x="140" y="21" width="6" height="6" rx="1" fill="#3a4a5a"/>
-      <rect x="140" y="35" width="6" height="6" rx="1" fill="#3a4a5a"/>
-      <rect x="160" y="24" width="20" height="8" rx="3" fill="#6a7a8a"/>
-      <rect x="176" y="26" width="4" height="4" rx="1" fill="#2a3a4a"/>
-      <rect x="150" y="15" width="4" height="14" rx="1" fill="#7a8a9a"/>
-      <polygon points="150,15 154,15 152,8" fill="#8a9aaa"/>
-      <rect x="143" y="13" width="7" height="3" rx="1" fill="#7a8a9a"/>
-      <rect x="143" y="42" width="7" height="3" rx="1" fill="#7a8a9a"/>
-      <rect x="28" y="25" width="8" height="6" rx="1" fill="#4a6a8a"/>
-      <circle cx="32" cy="28" r="2.5" fill="#2a4a6a"/>
-      <circle cx="32" cy="28" r="1" fill="#6a9aba"/>
-      <text x="72" y="30" font-size="5.5" fill="#1c3a58" font-family="sans-serif"
-            font-weight="bold" letter-spacing=".5">U.S. AIR FORCE</text>
-      <rect x="108" y="21" width="12" height="8" rx=".5" fill="#fff"/>
-      <polygon points="108,25 114,21 114,29" fill="#c8102e"/>
-      <polygon points="114,25 120,21 120,29" fill="#c8102e" opacity=".6"/>
-      <circle cx="114" cy="25" r="2.2" fill="#1c3a58"/>
-      <text x="155" y="22" font-size="4.5" fill="#dce6ee" font-family="sans-serif" font-weight="bold">C-21A</text>
-      <line x1="24" y1="28" x2="4" y2="28" stroke="#9ab0c4" stroke-width=".8" stroke-dasharray="3,2" opacity=".7"/>
+    <!-- C-21A / Learjet 35 — precise side profile matching reference photo
+         Nearly flat side view, flying right to left.
+         Key: short low wings, prominent gear pods, tight rear engines, tall T-tail -->
+    <svg width="240" height="68" viewBox="0 0 240 68" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ══ SHADOW ══ -->
+      <ellipse cx="118" cy="65" rx="88" ry="3.5" fill="rgba(0,0,0,0.20)"/>
+
+      <!-- ══ FUSELAGE — long, slim, nearly cylindrical ══ -->
+      <!-- Main body -->
+      <path d="M 30,30 Q 120,22 210,28 L 210,38 Q 120,44 30,38 Z" fill="#e8eef4"/>
+      <!-- Top white gloss -->
+      <path d="M 30,30 Q 120,23 210,28 Q 120,25 30,31 Z" fill="#ffffff" opacity="0.9"/>
+      <!-- Belly subtle grey -->
+      <path d="M 30,36 Q 120,43 210,37 Q 120,44 30,38 Z" fill="#b0c0d0" opacity="0.5"/>
+
+      <!-- ══ NOSE — dark radome, tapers to point ══ -->
+      <!-- Dark section covers front ~15% of fuselage -->
+      <path d="M 30,30 Q 18,33 6,34 Q 18,35 30,38 Z" fill="#1c2b38"/>
+      <!-- Very tip -->
+      <path d="M 6,34 Q 2,34 1,34 Q 2,34 6,34 Z" fill="#111820"/>
+      <!-- Subtle radome panel line -->
+      <path d="M 30,30 Q 22,32 10,34 Q 22,34 30,32 Z" fill="#243344" opacity="0.8"/>
+
+      <!-- ══ COCKPIT — 3 windows, nearly flat side view ══ -->
+      <!-- Windshield frames are angled forward -->
+      <path d="M 35,26 L 52,24 L 54,29 L 35,31 Z" fill="#1a3264" opacity="0.9"/>
+      <path d="M 54,24 L 66,23 L 67,28 L 54,29 Z" fill="#1a3264" opacity="0.85"/>
+      <!-- Frame highlight -->
+      <path d="M 35,26 L 66,23 L 67,28 L 54,29 L 35,31 Z"
+            fill="none" stroke="#c8d8e8" stroke-width="0.6"/>
+      <!-- Glass sheen -->
+      <path d="M 38,26.5 L 52,24.5 L 52,26 L 38,27.5 Z" fill="#fff" opacity="0.2"/>
+
+      <!-- ══ CABIN WINDOWS — 5 evenly spaced ovals ══ -->
+      <ellipse cx="85"  cy="27" rx="4" ry="2.6" fill="#1a3060" opacity="0.75"/>
+      <ellipse cx="100" cy="26.5" rx="4" ry="2.6" fill="#1a3060" opacity="0.75"/>
+      <ellipse cx="115" cy="26"   rx="4" ry="2.6" fill="#1a3060" opacity="0.75"/>
+      <ellipse cx="130" cy="26"   rx="4" ry="2.6" fill="#1a3060" opacity="0.75"/>
+      <ellipse cx="145" cy="26"   rx="4" ry="2.6" fill="#1a3060" opacity="0.75"/>
+
+      <!-- ══ USAF STAR & BAR ══ -->
+      <!-- Positioned mid-fuselage, clear and prominent like in photo -->
+      <rect x="156" y="27" width="24" height="14" rx="0.5" fill="#ffffff"/>
+      <!-- Red bars -->
+      <rect x="156" y="27" width="7"  height="14" fill="#c8102e"/>
+      <rect x="173" y="27" width="7"  height="14" fill="#c8102e"/>
+      <!-- Blue centre -->
+      <rect x="163" y="27" width="10" height="14" fill="#1c3a58"/>
+      <!-- White bars across -->
+      <rect x="156" y="31.5" width="24" height="1.8" fill="#ffffff"/>
+      <rect x="156" y="35.5" width="24" height="1.8" fill="#ffffff"/>
+      <!-- Simple star -->
+      <circle cx="168" cy="34" r="3.5" fill="#1c3a58"/>
+      <polygon points="168,30 169.2,33 172.5,33 170,35 171,38 168,36.2 165,38 166,35 163.5,33 166.8,33"
+               fill="#ffffff" transform="translate(0,0) scale(0.82) translate(29.4,5.8)"/>
+
+      <!-- ══ "U.S. AIR FORCE" — above wing line ══ -->
+      <text x="78" y="22" font-size="5.5" fill="#2a4a6a"
+            font-family="Arial,Helvetica,sans-serif"
+            font-weight="bold" letter-spacing="0.9">U.S. AIR FORCE</text>
+
+      <!-- ══ WINGS — SHORT, LOW, nearly horizontal ══
+           In the reference photo the wing is very short top-to-bottom,
+           mounts at the very bottom of the fuselage, sweeps back sharply.
+           Only a thin sliver is visible in side profile. -->
+      <!-- Wing (side profile — just a flat swept shape) -->
+      <path d="M 110,38 L 72,52 L 64,51 L 106,38 Z" fill="#c8d4dc"/>
+      <!-- Leading edge bright -->
+      <path d="M 110,38 L 72,52 L 73,51 L 111,38 Z" fill="#dce8f0"/>
+      <!-- Wing upper shadow line -->
+      <path d="M 110,39 L 72,53 L 64,51 L 106,39 Z" fill="#a0b0be" opacity="0.5"/>
+      <!-- Winglet — small, upswept -->
+      <path d="M 64,51 L 59,45 L 63,44 L 67,51 Z" fill="#b0bfcb"/>
+      <path d="M 59,45 L 57,41 L 61,41 L 63,44 Z" fill="#a0afbb"/>
+
+      <!-- ══ MAIN GEAR PODS — very prominent in photo, hang below fuselage ══ -->
+      <!-- Pod body — large teardrop shape -->
+      <path d="M 96,40 Q 118,40 124,42 Q 118,48 96,48 Q 90,46 90,44 Q 90,40 96,40 Z"
+            fill="#8090a0"/>
+      <!-- Pod highlight top -->
+      <path d="M 96,40 Q 118,40 124,42 Q 118,41 96,41 Z" fill="#b0c0cc" opacity="0.7"/>
+      <!-- Pod bottom shadow -->
+      <ellipse cx="107" cy="48" rx="14" ry="2" fill="#607080"/>
+      <!-- Small gear door lines -->
+      <line x1="100" y1="40" x2="100" y2="48" stroke="#6a7a88" stroke-width="0.5"/>
+      <line x1="110" y1="40" x2="110" y2="48" stroke="#6a7a88" stroke-width="0.5"/>
+
+      <!-- ══ AFT FUSELAGE TAPER ══ -->
+      <path d="M 198,28 Q 216,30 228,32 Q 216,34 198,36 Z" fill="#d8e2ea"/>
+      <path d="M 198,28 Q 220,30 230,32 Q 220,30 198,29 Z" fill="#fff" opacity="0.4"/>
+
+      <!-- ══ ENGINES — Learjet 35 rear-mount, one each side ══ -->
+      <!-- Upper engine (barely separated from fuselage in side view) -->
+      <path d="M 194,22 L 222,20 L 224,25 L 195,27 Z" fill="#566474"/>
+      <path d="M 194,22 L 195,27 L 224,25 L 224,21 Z" fill="#667484"/>
+      <!-- Inlet face -->
+      <ellipse cx="224" cy="23" rx="3.5" ry="4.5" fill="#354555"/>
+      <ellipse cx="224" cy="23" rx="2"   ry="2.8" fill="#152535"/>
+      <!-- Exhaust (left/front end) -->
+      <ellipse cx="194" cy="24.5" rx="2.5" ry="3" fill="#253545"/>
+      <!-- Exhaust shimmer going left -->
+      <path d="M 191,24.5 Q 178,24.5 168,25" fill="none"
+            stroke="rgba(255,160,40,0.22)" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Lower engine -->
+      <path d="M 194,41 L 222,39 L 224,44 L 195,46 Z" fill="#566474"/>
+      <path d="M 194,41 L 195,46 L 224,44 L 224,40 Z" fill="#667484"/>
+      <ellipse cx="224" cy="42" rx="3.5" ry="4.5" fill="#354555"/>
+      <ellipse cx="224" cy="42" rx="2"   ry="2.8" fill="#152535"/>
+      <ellipse cx="194" cy="43.5" rx="2.5" ry="3" fill="#253545"/>
+      <path d="M 191,43.5 Q 178,43.5 168,44" fill="none"
+            stroke="rgba(255,160,40,0.22)" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- ══ VERTICAL FIN — tall, straight leading edge, swept trailing ══ -->
+      <path d="M 206,34 L 200,10 L 208,8 L 216,34 Z" fill="#c0ccd8"/>
+      <path d="M 206,34 L 200,10 L 202,9 L 208,34 Z" fill="#d8e6f2"/>
+      <!-- Red anti-collision beacon -->
+      <circle cx="201" cy="8" r="2.2" fill="#ff0000" opacity="0.95"/>
+
+      <!-- ══ T-TAIL STABILISERS — mounted top of fin ══ -->
+      <!-- Port (left) stab -->
+      <path d="M 202,11 L 180,17 L 178,21 L 202,15 Z" fill="#b8c8d4"/>
+      <path d="M 202,11 L 180,17 L 182,16 L 203,11 Z" fill="#ccdae6"/>
+      <!-- Stab tip -->
+      <circle cx="178" cy="20" r="1.2" fill="#fff" opacity="0.7"/>
+      <!-- Starboard stab -->
+      <path d="M 202,11 L 224,17 L 224,20 L 202,15 Z" fill="#b8c8d4"/>
+      <path d="M 202,11 L 224,17 L 222,16 L 202,11 Z" fill="#ccdae6"/>
+
+      <!-- ══ NOSE GEAR — small, just visible ══ -->
+      <rect x="26" y="38" width="3" height="8" rx="1" fill="#7888a0"/>
+      <ellipse cx="27.5" cy="46" rx="3.5" ry="2" fill="#586878"/>
+
     </svg>
   </div>
 </div>
@@ -167,11 +338,28 @@ body{
   <div class="hdr-ttl">Hilton &amp; Marriott Finder</div>
 </div>
 
-<!-- Dartboard locate button -->
+<!-- GSA Per Diem Banner -->
+<div id="pdBanner">
+  <div class="pd-title">📋 GSA Per Diem Rates — Your Location</div>
+  <div class="pd-row">
+    <div class="pd-loc" id="pdLoc">Fetching…</div>
+    <div class="pd-rates">
+      <div class="pd-item">
+        <div class="pd-lbl">Lodging Cap</div>
+        <div class="pd-val" id="pdLodging">—</div>
+      </div>
+      <div class="pd-item">
+        <div class="pd-lbl">M&amp;IE</div>
+        <div class="pd-val" id="pdMie">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dartboard -->
 <div class="locate">
   <div class="dbw" id="dbw" onclick="doLocate()" role="button" aria-label="Locate me">
-    <svg viewBox="0 0 120 120" style="display:block;width:120px;height:120px"
-         xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 120 120" style="display:block;width:120px;height:120px" xmlns="http://www.w3.org/2000/svg">
       <defs><path id="arc" d="M 12,60 A 48,48 0 0,1 108,60"/></defs>
       <circle cx="60" cy="60" r="60" fill="#c8102e"/>
       <circle cx="60" cy="60" r="49" fill="#fff"/>
@@ -184,13 +372,24 @@ body{
       <line x1="1"  y1="60" x2="119" y2="60" stroke="#000" stroke-width="1" opacity=".13"/>
       <polygon points="60,7 55,19 65,19" fill="#000" opacity=".72"/>
       <line x1="60" y1="9" x2="60" y2="40" stroke="#000" stroke-width="2.5" opacity=".62"/>
-      <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif"
-            fill="#fff" letter-spacing="2">
+      <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif" fill="#fff" letter-spacing="2">
         <textPath href="#arc" startOffset="50%" text-anchor="middle">LOCATE ME</textPath>
       </text>
     </svg>
   </div>
-  <div class="locate-hint">Tap to find hotels near your location</div>
+  <div class="locate-hint">Tap to find hotels &amp; live per diem rates</div>
+</div>
+
+<!-- iOS location help -->
+<div id="iosHelp">
+  <strong>📍 Allow Location Access on iPhone/iPad</strong>
+  iOS blocked location. To fix:
+  <ol>
+    <li>Open <strong>Settings → Privacy &amp; Security → Location Services</strong></li>
+    <li>Make sure Location Services is <strong>ON</strong></li>
+    <li>Find <strong>Safari</strong> (or Chrome) → set to <strong>"While Using"</strong></li>
+    <li>Return here and tap Locate Me again</li>
+  </ol>
 </div>
 
 <div id="geo" class="geo"></div>
@@ -209,248 +408,337 @@ body{
 </div>
 
 <div id="reshdr" class="reshdr"></div>
+<div id="legRow" class="leg-row">
+  <div class="leg"><div class="leg-dot" style="background:#1a7a3c"></div>Within per diem — bookable</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--amber)"></div>Exceeds per diem — needs auth</div>
+</div>
 <div id="status"></div>
 <div id="results" class="results"></div>
 
 <script>
-/* ── Init date ── */
+/* ── iOS Chrome banner ── */
+(function(){
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isIOS && isSafari) {
+    const b = document.getElementById('chromeBanner');
+    b.style.display = 'flex';
+    document.getElementById('chromeLink').href =
+      'googlechrome://' + window.location.href.replace(/^https?:\/\//,'');
+  }
+})();
+
+/* ── Date init ── */
 const t  = new Date();
 const ds = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
 document.getElementById('checkin').value = ds;
 document.getElementById('checkin').min   = ds;
 
 /* ── State ── */
-let hotels = [], chain = 'all', lat = null, lng = null;
+let hotels=[], chain='all', lat=null, lng=null, perDiemRate=null;
 
-/* ── Filter ── */
-function setChain(el) {
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
-  el.classList.add('on');
-  chain = el.dataset.c;
-  render();
+/* ── Chain filter ── */
+function setChain(el){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on'); chain=el.dataset.c; render();
 }
 
-/* ── Stars ── */
-function stars(r) {
-  if (!r) return '';
-  const n = Math.min(5, Math.round(parseFloat(r)));
-  return '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
+/* ── Helpers ── */
+function stars(r){
+  if(!r)return'';
+  const n=Math.min(5,Math.round(parseFloat(r)));
+  return'★'.repeat(n)+'☆'.repeat(Math.max(0,5-n));
+}
+function haversine(a,b,c,d){
+  const R=3958.8,dL=(c-a)*Math.PI/180,dO=(d-b)*Math.PI/180;
+  const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dO/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
+function load(msg){
+  document.getElementById('status').innerHTML=`<div class="lbox"><div class="spin"></div>${msg}</div>`;
+  document.getElementById('results').innerHTML='';
+  document.getElementById('reshdr').style.display='none';
+  document.getElementById('legRow').style.display='none';
+}
+function showErr(msg){document.getElementById('status').innerHTML=`<div class="ebox">${msg}</div>`;}
+
+/* ── Reverse geocode ── */
+async function getLocation(lat,lng){
+  try{
+    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+      {headers:{'Accept-Language':'en-US,en'}});
+    const d=await r.json();
+    const a=d.address||{};
+    return{
+      zip:(a.postcode||'').split('-')[0],
+      city:a.city||a.town||a.village||a.county||'',
+      state:a.state||'',
+      code:(a['ISO3166-2-lvl4']||'').split('-')[1]||''
+    };
+  }catch(e){return null;}
 }
 
-/* ── Render cards ── */
-function render() {
-  const list = chain === 'all' ? hotels : hotels.filter(h => h.chain === chain);
-  const hdr  = document.getElementById('reshdr');
-  hdr.style.display = 'block';
-  hdr.textContent = list.length
-    ? `${list.length} propert${list.length === 1 ? 'y' : 'ies'} within 25 miles — nearest first`
-    : 'No properties match this filter.';
+/* ── GSA Per Diem ── */
+async function getPerDiem(loc){
+  const year=2026;
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const mo=months[new Date().getMonth()];
+  const base='https://api.gsa.gov/travel/perdiem/v2/rates';
 
-  document.getElementById('results').innerHTML = list.map(h => {
-    const map = `https://maps.google.com/?q=${encodeURIComponent(h.address)}`;
-    const isH = h.chain === 'hilton';
-    const lbl = isH ? 'Hilton' : 'Marriott';
-    const bc  = isH ? 'bh' : 'bm';
-    const st  = stars(h.stars);
-    const sn  = h.stars ? parseFloat(h.stars).toFixed(1) : '';
-    const d   = parseFloat(h.distance || 0).toFixed(1);
+  function parse(data){
+    const r=data?.rates?.[0]?.rate?.[0];
+    if(!r)return null;
+    const lodge=parseInt(r[mo]||r['Oct']||0);
+    const mie=parseInt(r['Meals']||0);
+    const city=r['City']||'';
+    const st=r['State']||'';
+    if(!lodge)return null;
+    return{lodge,mie,label:[city,st].filter(Boolean).join(', ')};
+  }
 
-    const av = h.available === true  ? '<span class="avy">✓ Available tonight</span>'
-             : h.available === false ? '<span class="avn">✗ Sold out</span>'
-             :                         '<span class="avu">Check availability</span>';
+  // Try by ZIP
+  if(loc.zip){
+    try{
+      const r=await fetch(`${base}/zip/${loc.zip}/year/${year}`);
+      if(r.ok){const p=parse(await r.json());if(p)return p;}
+    }catch(e){}
+  }
+  // Try by city+state
+  if(loc.city&&loc.code){
+    try{
+      const city=encodeURIComponent(loc.city.toUpperCase());
+      const r=await fetch(`${base}/city/${city}/state/${loc.code}/year/${year}`);
+      if(r.ok){const p=parse(await r.json());if(p)return p;}
+    }catch(e){}
+  }
+  // Standard CONUS fallback FY2026
+  return{lodge:107,mie:59,label:`${loc.city||'Your location'} (standard CONUS rate)`};
+}
 
-    const mil = h.mil_rate
-      ? `<span class="rmil">${h.mil_rate} <span>mil/govt</span></span>`
-      : '<span class="rmil">Call for mil rate</span>';
+/* ── Render ── */
+function render(){
+  let list=chain==='all'?hotels:hotels.filter(h=>h.chain===chain);
 
-    const std = h.price ? `<span class="rstd">${h.price}</span>` : '';
+  // Sort: within per diem first, then by distance
+  if(perDiemRate){
+    list=[...list].sort((a,b)=>{
+      const ar=parseFloat((a.mil_rate||'').replace(/[^0-9.]/g,''))||999;
+      const br=parseFloat((b.mil_rate||'').replace(/[^0-9.]/g,''))||999;
+      const ai=ar<=perDiemRate, bi=br<=perDiemRate;
+      if(ai&&!bi)return-1; if(!ai&&bi)return 1;
+      return a._miles-b._miles;
+    });
+    document.getElementById('legRow').style.display='flex';
+  }
 
-    const book = isH
-      ? `https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`
-      : `https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`;
+  const hdr=document.getElementById('reshdr');
+  hdr.style.display='block';
+  hdr.textContent=list.length
+    ?`${list.length} propert${list.length===1?'y':'ies'} within 25 miles${perDiemRate?' — per diem approved first':' — nearest first'}`
+    :'No properties match this filter.';
 
-    return `<div class="hcard">
+  document.getElementById('results').innerHTML=list.map(h=>{
+    const map=`https://maps.google.com/?q=${encodeURIComponent(h.address)}`;
+    const isH=h.chain==='hilton';
+    const lbl=isH?'Hilton':'Marriott';
+    const bc=isH?'bh':'bm';
+    const st=stars(h.stars);
+    const sn=h.stars?parseFloat(h.stars).toFixed(1):'';
+    const d=parseFloat(h.distance||0).toFixed(1);
+    const milNum=parseFloat((h.mil_rate||'').replace(/[^0-9.]/g,''))||null;
+
+    const av=h.available===true?'<span class="avy">✓ Available tonight</span>'
+            :h.available===false?'<span class="avn">✗ Sold out</span>'
+            :'<span class="avu">Check availability</span>';
+
+    const book=isH
+      ?`https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`
+      :`https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`;
+
+    // Rate comparison
+    let rateHtml='', cardClass='hcard', pdBadge='';
+    if(perDiemRate&&milNum){
+      const diff=perDiemRate-milNum;
+      const ok=diff>=0;
+      cardClass=ok?'hcard pd-ok':'hcard pd-no';
+      pdBadge=ok?'<span class="badge bpd-ok">✓ Per Diem</span>'
+                :'<span class="badge bpd-no">Over PD</span>';
+      rateHtml=`
+        <div class="rate-box">
+          <div class="rate-cols">
+            <div class="rate-col">
+              <div class="rlbl">Mil / Govt Rate</div>
+              <div class="rmil">${h.mil_rate||'Call'}</div>
+            </div>
+            <div class="rate-divider"></div>
+            <div class="rate-col">
+              <div class="rlbl">GSA Per Diem Cap</div>
+              <div class="rpd">$${perDiemRate}/night</div>
+            </div>
+            ${h.price?`<div class="rate-divider"></div>
+            <div class="rate-col">
+              <div class="rlbl">Standard Rate</div>
+              <div class="rstd">${h.price}</div>
+            </div>`:''}
+          </div>
+          <div class="verdict ${ok?'ok':'no'}">
+            <span class="verdict-icon">${ok?'✅':'🚫'}</span>
+            <div class="verdict-txt">
+              <strong style="color:${ok?'var(--green)':'var(--amber)'}">
+                ${ok?'Within per diem limit':'Exceeds per diem limit'}
+              </strong><br>
+              ${ok?`$${diff} under cap — approved for booking`
+                  :`$${Math.abs(diff)} over cap — requires commander authorization`}
+            </div>
+          </div>
+        </div>`;
+    } else {
+      rateHtml=`
+        <div class="rate-box">
+          <div class="rate-cols">
+            <div class="rate-col">
+              <div class="rlbl">Mil / Govt Rate</div>
+              <div class="rmil">${h.mil_rate||'<span style="font-size:13px;font-weight:400">Call for rate</span>'}</div>
+            </div>
+            ${h.price?`<div class="rate-divider"></div>
+            <div class="rate-col">
+              <div class="rlbl">Standard Rate</div>
+              <div class="rstd">${h.price}</div>
+            </div>`:''}
+          </div>
+        </div>`;
+    }
+
+    return`<div class="${cardClass}">
       <div class="ctop">
         <div class="cname">${h.name}</div>
-        <span class="badge ${bc}">${lbl}</span>
+        <div class="badges"><span class="badge ${bc}">${lbl}</span>${pdBadge}</div>
       </div>
       <div class="cmeta">
         <span>${d} mi</span>
-        ${st ? `<span class="stars">${st}</span><span>${sn}</span>` : ''}
-        <span>${h.brand || lbl}</span>
+        ${st?`<span class="stars">${st}</span><span>${sn}</span>`:''}
+        <span>${h.brand||lbl}</span>
       </div>
       <a class="caddr" href="${map}">📍 ${h.address}</a>
-      <div class="ratebox">
-        <div><div class="rlbl">Military / Govt rate</div>${mil}</div>
-        ${std ? `<div style="text-align:right"><div class="rlbl">Standard rate</div>${std}</div>` : ''}
-      </div>
-      <div class="avrow">
-        ${av}
-        <a class="bbtn" href="${book}" target="_blank" rel="noopener">Book →</a>
-      </div>
+      ${rateHtml}
+      <div class="avrow">${av}<a class="bbtn" href="${book}" target="_blank" rel="noopener">Book →</a></div>
     </div>`;
   }).join('');
 }
 
-/* ── Status helpers ── */
-function load(msg) {
-  document.getElementById('status').innerHTML =
-    `<div class="lbox"><div class="spin"></div>${msg}</div>`;
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('reshdr').style.display = 'none';
-}
-function showErr(msg) {
-  document.getElementById('status').innerHTML = `<div class="ebox">${msg}</div>`;
-}
-
-/* ── Geolocation ── */
-function doLocate() {
-  if (!navigator.geolocation) {
-    showErr('Geolocation is not supported by this browser.');
-    return;
-  }
+/* ── Locate ── */
+function doLocate(){
+  if(!navigator.geolocation){showErr('Geolocation not supported by this browser.');return;}
   document.getElementById('dbw').classList.add('off');
+  document.getElementById('iosHelp').style.display='none';
   load('Acquiring your location…');
-  document.getElementById('geo').textContent = '';
+  document.getElementById('geo').textContent='';
 
   navigator.geolocation.getCurrentPosition(
-    pos => {
-      lat = pos.coords.latitude;
-      lng = pos.coords.longitude;
-      const ns = lat >= 0 ? 'N' : 'S';
-      const ew = lng >= 0 ? 'E' : 'W';
-      document.getElementById('geo').textContent =
+    pos=>{
+      lat=pos.coords.latitude; lng=pos.coords.longitude;
+      const ns=lat>=0?'N':'S', ew=lng>=0?'E':'W';
+      document.getElementById('geo').textContent=
         `${Math.abs(lat).toFixed(4)}° ${ns}  ${Math.abs(lng).toFixed(4)}° ${ew}`;
       doSearch();
     },
-    e => {
+    e=>{
       document.getElementById('dbw').classList.remove('off');
-      const msgs = {
-        1: 'Location permission denied. Enable location access in your browser settings.',
-        2: 'Location unavailable. Try again in a moment.',
-        3: 'Location timed out. Try again.'
-      };
-      showErr(msgs[e.code] || 'Could not get your location.');
+      document.getElementById('status').innerHTML='';
+      const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+      if(e.code===1&&isIOS){
+        document.getElementById('iosHelp').style.display='block';
+      } else {
+        const m={1:'Location permission denied. Please enable location in your browser settings.',
+                 2:'Location unavailable. Try again.',
+                 3:'Location timed out. Try again.'};
+        showErr(m[e.code]||'Could not get your location.');
+      }
     },
-    { enableHighAccuracy: true, timeout: 14000, maximumAge: 60000 }
+    {enableHighAccuracy:true,timeout:14000,maximumAge:60000}
   );
 }
 
-/* ── Haversine formula — precise GPS distance in miles ── */
-function haversine(lat1, lon1, lat2, lon2) {
-  const R = 3958.8;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2)
-          + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180)
-          * Math.sin(dLon/2) * Math.sin(dLon/2);
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
+/* ── API call helper ── */
+async function callAPI(chainName){
+  const checkin=document.getElementById('checkin').value;
+  const brands=chainName==='Hilton'
+    ?'Hilton Hotels & Resorts, Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry Collection, Curio Collection, Waldorf Astoria, Conrad, LXR Hotels'
+    :'Marriott Hotels & Resorts, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points, Autograph Collection, Delta Hotels, Gaylord Hotels';
 
-/* ── Hotel search — two parallel requests (Hilton + Marriott) ── */
-async function callAPI(chain, directionHint) {
-  const checkin = document.getElementById('checkin').value;
-
-  const SYSTEM = `You are a hotel data assistant for US military travelers. Return a JSON array of real ${chain} branded hotels near the given GPS coordinates. Include ALL ${chain} sub-brands.
-
-${chain === 'Hilton' 
-  ? 'Hilton brands: Hilton, Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry Collection, Curio Collection, Waldorf Astoria, Conrad, LXR Hotels.'
-  : 'Marriott brands: Marriott, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points, Autograph Collection, Delta Hotels, Gaylord Hotels.'}
-
-Return ONLY valid JSON — no markdown, no explanation.
-
-Each entry MUST have precise lat/lng. Do NOT include a distance field.
-
-Schema: [{"name":"Full name","address":"Street, City, State ZIP","chain":"${chain.toLowerCase()}","brand":"Sub-brand","lat":33.749,"lng":-84.388,"stars":3.5,"available":true,"price":"$149","mil_rate":"$109"}]
-
-Rules:
-- lat/lng: precise GPS coordinates of the actual hotel building
-- stars: 1-5 rating
-- available: true/false/null
-- price: rack rate per night or null
-- mil_rate: govt per diem estimate or null
-- Return 15-20 REAL properties. Cover the ${directionHint} parts of the region within 30 miles.`;
-
-  const resp = await fetch(WORKER_URL, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 4000,
-      system: SYSTEM,
-      messages: [{
-        role: 'user',
-        content: `Find ${chain} brand hotels within 30 miles of lat ${lat.toFixed(5)}, lng ${lng.toFixed(5)}. Cover ${directionHint} areas. Check-in: ${checkin}. Include precise lat/lng for every property.`
+  const resp=await fetch(WORKER_URL,{
+    method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-haiku-4-5-20251001',max_tokens:4000,
+      system:`You are a hotel data assistant for US military travelers. Return a JSON array of real ${chainName} branded hotels near given GPS coordinates. Include these brands: ${brands}.
+Return ONLY valid JSON, no markdown. Each entry needs precise lat/lng of the actual hotel.
+Schema: [{"name":"Full name","address":"Street, City, State ZIP","chain":"${chainName.toLowerCase()}","brand":"Sub-brand","lat":33.749,"lng":-84.388,"stars":3.5,"available":true,"price":"$149","mil_rate":"$109"}]
+Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real properties across the region.`,
+      messages:[{role:'user',
+        content:`Find ${chainName} hotels within 30 miles of lat ${lat.toFixed(5)}, lng ${lng.toFixed(5)}. Include properties in all surrounding cities and suburbs. Check-in: ${checkin}. Each property needs precise lat/lng.`
       }]
     })
   });
 
-  if (!resp.ok) {
-    const e = await resp.json().catch(() => ({}));
-    throw new Error(e.error?.message || `Server error ${resp.status}`);
-  }
-
-  const data = await resp.json();
-  if (data.error) throw new Error(data.error.message || 'API error');
-
-  let text = (data.content || []).map(b => b.text || '').join('').trim();
-
-  // Strip markdown fences if present
-  text = text.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '').trim();
-
-  // Extract JSON array even if there's trailing text
-  const start = text.indexOf('[');
-  const end   = text.lastIndexOf(']');
-  if (start === -1 || end === -1) throw new Error(`No JSON array in ${chain} response`);
-  return JSON.parse(text.slice(start, end + 1));
+  if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${resp.status}`);}
+  const data=await resp.json();
+  if(data.error)throw new Error(data.error.message||'API error');
+  let text=(data.content||[]).map(b=>b.text||'').join('').trim();
+  text=text.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/i,'').trim();
+  const s=text.indexOf('['),e2=text.lastIndexOf(']');
+  if(s===-1||e2===-1)throw new Error(`No JSON in ${chainName} response`);
+  return JSON.parse(text.slice(s,e2+1));
 }
 
-async function doSearch() {
-  load('Finding Hilton &amp; Marriott properties near you…');
-  hotels = [];
+/* ── Main search ── */
+async function doSearch(){
+  load('Fetching GSA per diem &amp; searching for hotels…');
+  hotels=[]; perDiemRate=null;
 
-  try {
-    // Run both chain requests in parallel
-    const [hiltonResults, marriottResults] = await Promise.all([
-      callAPI('Hilton',   'all surrounding cities, suburbs, and towns'),
-      callAPI('Marriott', 'all surrounding cities, suburbs, and towns')
-    ]);
+  // Kick off all requests simultaneously
+  const locP=getLocation(lat,lng);
+  const hiltonP=callAPI('Hilton');
+  const marriottP=callAPI('Marriott');
 
-    const combined = [...hiltonResults, ...marriottResults];
+  // Per diem — show as soon as ready
+  try{
+    const loc=await locP;
+    if(loc){
+      const pd=await getPerDiem(loc);
+      if(pd){
+        perDiemRate=pd.lodge;
+        document.getElementById('pdLoc').textContent=pd.label||'Your location';
+        document.getElementById('pdLodging').textContent=`$${pd.lodge}/night`;
+        document.getElementById('pdMie').textContent=pd.mie?`$${pd.mie}/day`:'—';
+        document.getElementById('pdBanner').style.display='block';
+      }
+    }
+  }catch(e){/* non-fatal */}
 
-    if (!combined.length) throw new Error('No hotels returned for this location');
+  // Hotels
+  try{
+    const [hr,mr]=await Promise.all([hiltonP,marriottP]);
+    const combined=[...hr,...mr];
+    if(!combined.length)throw new Error('No hotels returned for this location');
 
-    // Deduplicate by name+address
-    const seen = new Set();
-    const unique = combined.filter(h => {
-      const key = (h.name + h.address).toLowerCase().replace(/\s+/g, '');
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
+    // Deduplicate
+    const seen=new Set();
+    const unique=combined.filter(h=>{
+      const k=(h.name+h.address).toLowerCase().replace(/\s+/g,'');
+      if(seen.has(k))return false; seen.add(k); return true;
     });
 
-    // Haversine distance, filter to 25 miles, sort nearest first
-    hotels = unique
-      .map(h => {
-        const hLat = parseFloat(h.lat);
-        const hLng = parseFloat(h.lng);
-        const exactMiles = (hLat && hLng) ? haversine(lat, lng, hLat, hLng) : 999;
-        return {
-          ...h,
-          chain: (h.chain || '').toLowerCase().trim(),
-          distance: exactMiles.toFixed(1),
-          _miles: exactMiles
-        };
-      })
-      .filter(h => h._miles <= 25)
-      .sort((a, b) => a._miles - b._miles);
+    // Haversine distance, filter 25 mi
+    hotels=unique.map(h=>{
+      const hLat=parseFloat(h.lat),hLng=parseFloat(h.lng);
+      const m=(hLat&&hLng)?haversine(lat,lng,hLat,hLng):999;
+      return{...h,chain:(h.chain||'').toLowerCase().trim(),distance:m.toFixed(1),_miles:m};
+    }).filter(h=>h._miles<=25).sort((a,b)=>a._miles-b._miles);
 
-    if (!hotels.length) throw new Error('No Hilton or Marriott properties found within 25 miles of your location');
-
-    document.getElementById('status').innerHTML = '';
+    if(!hotels.length)throw new Error('No Hilton or Marriott properties found within 25 miles');
+    document.getElementById('status').innerHTML='';
     render();
-
-  } catch (e) {
+  }catch(e){
     showErr(`Search failed: ${e.message}. Check your connection and try again.`);
   }
 
