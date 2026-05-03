@@ -340,7 +340,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 
 <!-- GSA Per Diem Banner -->
 <div id="pdBanner">
-  <div class="pd-title">📋 GSA Per Diem Rates — Your Location</div>
+  <div class="pd-title">📋 GSA Per Diem — FY2026 &nbsp;·&nbsp;
+    <a id="pdGsaLink" href="https://www.gsa.gov/travel/plan-book/per-diem-rates" 
+       target="_blank" rel="noopener"
+       style="color:var(--gold);font-size:10px;text-decoration:underline;letter-spacing:.05em">
+      Verify on GSA.gov ↗
+    </a>
+  </div>
   <div class="pd-row">
     <div class="pd-loc" id="pdLoc">Fetching…</div>
     <div class="pd-rates">
@@ -480,61 +486,121 @@ async function getLocation(lat,lng){
 
 /* ── GSA Per Diem ── */
 async function getPerDiem(loc){
-  const year=2026;
+  // FY2026 runs Oct 1 2025 – Sep 30 2026
+  // Current month for lodging rate lookup
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const mo=months[new Date().getMonth()];
-  const base='https://api.gsa.gov/travel/perdiem/v2/rates';
+  const mo = months[new Date().getMonth()];
+  const base = 'https://api.gsa.gov/travel/perdiem/v2/rates';
 
   function parse(data){
-    const r=data?.rates?.[0]?.rate?.[0];
-    if(!r)return null;
-    const lodge=parseInt(r[mo]||r['Oct']||0);
-    const mie=parseInt(r['Meals']||0);
-    const city=r['City']||'';
-    const st=r['State']||'';
-    if(!lodge)return null;
-    return{lodge,mie,label:[city,st].filter(Boolean).join(', ')};
+    // GSA response: {rates:[{rate:[{Jan,Feb,...,Oct,Meals,City,State,...}]}]}
+    const rates = data?.rates;
+    if(!rates||!rates.length) return null;
+    // Could be multiple rate entries; pick the one with highest lodging (NSA > standard)
+    let best = null;
+    for(const entry of rates){
+      const r = entry?.rate?.[0];
+      if(!r) continue;
+      const lodge = parseInt(r[mo] || r['Oct'] || 0);
+      const mie   = parseInt(r['Meals'] || 0);
+      if(!lodge) continue;
+      if(!best || lodge > best.lodge){
+        best = {
+          lodge,
+          mie,
+          label: [r['City']||'', r['State']||''].filter(Boolean).join(', ')
+        };
+      }
+    }
+    return best;
   }
 
-  // Try by ZIP
+  // Attempt 1: ZIP code lookup
   if(loc.zip){
     try{
-      const r=await fetch(`${base}/zip/${loc.zip}/year/${year}`);
-      if(r.ok){const p=parse(await r.json());if(p)return p;}
-    }catch(e){}
+      const resp = await fetch(`${base}/zip/${loc.zip}/year/2026`, {
+        headers:{'Accept':'application/json'}
+      });
+      if(resp.ok){
+        const data = await resp.json();
+        const p = parse(data);
+        if(p){ 
+          // Update GSA.gov deep link with actual ZIP
+          const link = document.getElementById('pdGsaLink');
+          if(link) link.href = `https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&zip=${loc.zip}&fiscal_year=2026`;
+          return p;
+        }
+      }
+    }catch(e){ console.warn('GSA ZIP lookup failed:',e); }
   }
-  // Try by city+state
-  if(loc.city&&loc.code){
+
+  // Attempt 2: City + State lookup
+  if(loc.city && loc.code){
     try{
-      const city=encodeURIComponent(loc.city.toUpperCase());
-      const r=await fetch(`${base}/city/${city}/state/${loc.code}/year/${year}`);
-      if(r.ok){const p=parse(await r.json());if(p)return p;}
+      const cityEnc = encodeURIComponent(loc.city.replace(/[.']/g,' ').trim());
+      const resp = await fetch(`${base}/city/${cityEnc}/state/${loc.code}/year/2026`, {
+        headers:{'Accept':'application/json'}
+      });
+      if(resp.ok){
+        const data = await resp.json();
+        const p = parse(data);
+        if(p){
+          const link = document.getElementById('pdGsaLink');
+          if(link) link.href = `https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&city=${cityEnc}&state=${loc.code}&fiscal_year=2026`;
+          return p;
+        }
+      }
+    }catch(e){ console.warn('GSA city lookup failed:',e); }
+  }
+
+  // Attempt 3: State-only to get standard rate
+  if(loc.code){
+    try{
+      const resp = await fetch(`${base}/state/${loc.code}/year/2026`, {
+        headers:{'Accept':'application/json'}
+      });
+      if(resp.ok){
+        const data = await resp.json();
+        const p = parse(data);
+        if(p) return {...p, label: p.label + ' (state standard)'};
+      }
     }catch(e){}
   }
-  // Standard CONUS fallback FY2026
-  return{lodge:107,mie:59,label:`${loc.city||'Your location'} (standard CONUS rate)`};
+
+  // Fallback: Standard CONUS rate FY2026 ($107 lodging / $68 M&IE)
+  console.warn('GSA API unavailable — using standard CONUS rate');
+  return{
+    lodge: 107,
+    mie: 68,
+    label: (loc.city ? `${loc.city}, ${loc.code}` : 'Your location') + ' — standard CONUS rate'
+  };
 }
 
 /* ── Render ── */
 function render(){
   let list=chain==='all'?hotels:hotels.filter(h=>h.chain===chain);
 
-  // Sort: within per diem first, then by distance
-  if(perDiemRate){
-    list=[...list].sort((a,b)=>{
+  // Sort: per diem first, then stars high→low, then distance
+  list=[...list].sort((a,b)=>{
+    // 1. Within per diem before over per diem
+    if(perDiemRate){
       const ar=parseFloat((a.mil_rate||'').replace(/[^0-9.]/g,''))||999;
       const br=parseFloat((b.mil_rate||'').replace(/[^0-9.]/g,''))||999;
       const ai=ar<=perDiemRate, bi=br<=perDiemRate;
       if(ai&&!bi)return-1; if(!ai&&bi)return 1;
-      return a._miles-b._miles;
-    });
-    document.getElementById('legRow').style.display='flex';
-  }
+    }
+    // 2. Higher star rating first
+    const aS=parseFloat(a.stars||0), bS=parseFloat(b.stars||0);
+    if(bS!==aS)return bS-aS;
+    // 3. Closer distance last tiebreak
+    return a._miles-b._miles;
+  });
+  if(perDiemRate) document.getElementById('legRow').style.display='flex';
 
   const hdr=document.getElementById('reshdr');
   hdr.style.display='block';
   hdr.textContent=list.length
-    ?`${list.length} propert${list.length===1?'y':'ies'} within 25 miles${perDiemRate?' — per diem approved first':' — nearest first'}`
+    ?`${list.length} propert${list.length===1?'y':'ies'} within 25 miles${perDiemRate?' — per diem &amp; top rated first':' — top rated first'}`
     :'No properties match this filter.';
 
   document.getElementById('results').innerHTML=list.map(h=>{
@@ -711,6 +777,10 @@ async function doSearch(){
         document.getElementById('pdLodging').textContent=`$${pd.lodge}/night`;
         document.getElementById('pdMie').textContent=pd.mie?`$${pd.mie}/day`:'—';
         document.getElementById('pdBanner').style.display='block';
+        // Note if this is fallback rate
+        if(pd.label && pd.label.includes('CONUS')){
+          document.getElementById('pdLoc').style.color='rgba(255,220,100,0.7)';
+        }
       }
     }
   }catch(e){/* non-fatal */}
@@ -733,7 +803,11 @@ async function doSearch(){
       const hLat=parseFloat(h.lat),hLng=parseFloat(h.lng);
       const m=(hLat&&hLng)?haversine(lat,lng,hLat,hLng):999;
       return{...h,chain:(h.chain||'').toLowerCase().trim(),distance:m.toFixed(1),_miles:m};
-    }).filter(h=>h._miles<=25).sort((a,b)=>a._miles-b._miles);
+    }).filter(h=>h._miles<=25).sort((a,b)=>{
+      const aS=parseFloat(a.stars||0),bS=parseFloat(b.stars||0);
+      if(bS!==aS)return bS-aS;
+      return a._miles-b._miles;
+    });
 
     if(!hotels.length)throw new Error('No Hilton or Marriott properties found within 25 miles');
     document.getElementById('status').innerHTML='';
