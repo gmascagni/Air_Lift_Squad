@@ -759,7 +759,11 @@ function doLocate(){
 }
 
 /* ── API call helper ── */
-async function callAPI(chainName){
+/* ── Sleep helper for retry ── */
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+/* ── Single API call attempt ── */
+async function callAPIonce(chainName){
   const checkin=document.getElementById('checkin').value;
   const brands=chainName==='Hilton'
     ?'Hilton Hotels & Resorts, Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry Collection, Curio Collection, Waldorf Astoria, Conrad, LXR Hotels'
@@ -779,14 +783,50 @@ Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real 
     })
   });
 
+  // Handle overload (529) and rate limit (429) — return status for retry logic
+  if(resp.status===529||resp.status===429){
+    const e=await resp.json().catch(()=>({}));
+    const err=new Error(e.error?.message||`Server busy (${resp.status})`);
+    err.retryable=true;
+    throw err;
+  }
   if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${resp.status}`);}
   const data=await resp.json();
-  if(data.error)throw new Error(data.error.message||'API error');
+  if(data.error){
+    const err=new Error(data.error.message||'API error');
+    // overloaded errors from Anthropic come back as 200 with error body
+    if(data.error.type==='overloaded_error'||data.error.message?.toLowerCase().includes('overload')){
+      err.retryable=true;
+    }
+    throw err;
+  }
   let text=(data.content||[]).map(b=>b.text||'').join('').trim();
   text=text.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/i,'').trim();
   const s=text.indexOf('['),e2=text.lastIndexOf(']');
   if(s===-1||e2===-1)throw new Error(`No JSON in ${chainName} response`);
   return JSON.parse(text.slice(s,e2+1));
+}
+
+/* ── callAPI with auto-retry (3 attempts, exponential backoff) ── */
+async function callAPI(chainName){
+  const maxAttempts=3;
+  const delays=[3000,6000]; // wait 3s then 6s between retries
+  let lastErr;
+  for(let attempt=1;attempt<=maxAttempts;attempt++){
+    try{
+      return await callAPIonce(chainName);
+    } catch(err){
+      lastErr=err;
+      if(err.retryable && attempt<maxAttempts){
+        const wait=delays[attempt-1]||6000;
+        load(`API busy — retrying ${chainName} in ${wait/1000}s… (attempt ${attempt}/${maxAttempts})`);
+        await sleep(wait);
+      } else {
+        throw err; // non-retryable or out of attempts
+      }
+    }
+  }
+  throw lastErr;
 }
 
 /* ── Main search ── */
