@@ -406,6 +406,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 /* ── iOS Chrome banner ── */
 (function(){
@@ -788,6 +789,135 @@ Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real 
   return JSON.parse(text.slice(s,e2+1));
 }
 
+/* ── MAP FUNCTIONS (moved inline to avoid scope issues) ── */
+
+/* ════════════════════════════════════
+   MAP — Leaflet + OpenStreetMap
+════════════════════════════════════ */
+let map = null;
+let mapVisible = true;
+let mapMarkers = [];
+
+function initMap() {
+  if (map) return; // already initialized
+  map = L.map('mapContainer', {
+    zoomControl: true,
+    scrollWheelZoom: false, // prevent scroll hijack on mobile
+    tap: true
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 17
+  }).addTo(map);
+}
+
+function toggleMap() {
+  const container = document.getElementById('mapContainer');
+  const btn = document.getElementById('mapToggleBtn');
+  mapVisible = !mapVisible;
+  container.style.display = mapVisible ? 'block' : 'none';
+  btn.textContent = mapVisible ? 'Hide Map' : 'Show Map';
+  if (mapVisible && map) {
+    setTimeout(() => map.invalidateSize(), 100);
+  }
+}
+
+function buildMap(hotelList, userLat, userLng) {
+  document.getElementById('mapSection').style.display = 'block';
+  mapVisible = true;
+  document.getElementById('mapToggleBtn').textContent = 'Hide Map';
+  document.getElementById('mapContainer').style.display = 'block';
+
+  initMap();
+
+  // Clear old markers
+  mapMarkers.forEach(m => map.removeLayer(m));
+  mapMarkers = [];
+
+  const bounds = [];
+
+  // User location marker
+  const userIcon = L.divIcon({
+    className: '',
+    html: `<div style="background:#00308f;border:3px solid #FFD700;border-radius:50%;
+                width:16px;height:16px;box-shadow:0 2px 6px rgba(0,0,0,0.5)"></div>`,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8]
+  });
+  const userMarker = L.marker([userLat, userLng], { icon: userIcon })
+    .addTo(map)
+    .bindPopup('<strong>📍 Your Location</strong>');
+  mapMarkers.push(userMarker);
+  bounds.push([userLat, userLng]);
+
+  // Hotel markers
+  hotelList.forEach(h => {
+    const hLat = parseFloat(h.lat);
+    const hLng = parseFloat(h.lng);
+    if (!hLat || !hLng) return;
+
+    const isH = h.chain === 'hilton';
+    const milNum = parseFloat((h.mil_rate || '').replace(/[^0-9.]/g, '')) || null;
+    const withinPD = perDiemRate && milNum ? milNum <= perDiemRate : null;
+
+    const bgColor = isH ? '#0d3b8a' : '#8a0d0d';
+    const borderColor = withinPD === true ? '#1a7a3c' : withinPD === false ? '#b85c00' : '#ffffff';
+    const borderWidth = withinPD !== null ? '3px' : '2px';
+
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="
+        background:${bgColor};
+        border:${borderWidth} solid ${borderColor};
+        border-radius:50% 50% 50% 0;
+        width:20px;height:20px;
+        transform:rotate(-45deg);
+        box-shadow:0 2px 5px rgba(0,0,0,0.35)">
+      </div>`,
+      iconSize: [20, 20],
+      iconAnchor: [10, 20],
+      popupAnchor: [0, -22]
+    });
+
+    const pdLine = perDiemRate && milNum
+      ? `<br><span style="color:${withinPD ? '#1a7a3c' : '#b85c00'};font-weight:600">
+          ${withinPD ? '✅ Within per diem' : '🚫 Exceeds per diem'}
+          (${withinPD ? '-' : '+'}$${Math.abs(perDiemRate - milNum)})
+        </span>`
+      : '';
+
+    const popup = `
+      <div style="font-family:-apple-system,sans-serif;min-width:160px">
+        <strong style="font-size:13px;color:#00308f">${h.name}</strong><br>
+        <span style="font-size:11px;color:#666">${isH ? 'Hilton' : 'Marriott'} · ${parseFloat(h.distance).toFixed(1)} mi</span><br>
+        <span style="font-size:11px">${h.address}</span>
+        ${h.mil_rate ? `<br><span style="font-size:12px;font-weight:600">Mil rate: ${h.mil_rate}</span>` : ''}
+        ${pdLine}
+        <br><a href="https://maps.google.com/?q=${encodeURIComponent(h.address)}"
+           target="_blank"
+           style="font-size:11px;color:#00308f;display:inline-block;margin-top:4px">
+          Open in Google Maps ↗
+        </a>
+      </div>`;
+
+    const marker = L.marker([hLat, hLng], { icon })
+      .addTo(map)
+      .bindPopup(popup, { maxWidth: 240 });
+
+    mapMarkers.push(marker);
+    bounds.push([hLat, hLng]);
+  });
+
+  // Fit map to show all markers
+  if (bounds.length > 1) {
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 13 });
+  } else {
+    map.setView([userLat, userLng], 11);
+  }
+
+  // Refresh size after show
+  setTimeout(() => map.invalidateSize(), 200);
+}
 /* ── Main search ── */
 async function doSearch(){
   load('Fetching GSA per diem &amp; searching for hotels…');
@@ -844,12 +974,8 @@ async function doSearch(){
     if(!hotels.length)throw new Error('No Hilton or Marriott properties found within 25 miles');
     document.getElementById('status').innerHTML='';
     render();
-    // Build map — wrapped in setTimeout to ensure Leaflet is ready
-    setTimeout(() => {
-      if (typeof buildMap === 'function') {
-        buildMap(hotels, lat, lng);
-      }
-    }, 100);
+    // Build map
+    buildMap(hotels, lat, lng);
     showMapAfterSearch();
   }catch(e){
     showErr(`Search failed: ${e.message}. Check your connection and try again.`);
@@ -1022,138 +1148,8 @@ function showMapAfterSearch() {
 }
 
 
-/* ── MAP FUNCTIONS (moved inline to avoid scope issues) ── */
-
-/* ════════════════════════════════════
-   MAP — Leaflet + OpenStreetMap
-════════════════════════════════════ */
-let map = null;
-let mapVisible = true;
-let mapMarkers = [];
-
-function initMap() {
-  if (map) return; // already initialized
-  map = L.map('mapContainer', {
-    zoomControl: true,
-    scrollWheelZoom: false, // prevent scroll hijack on mobile
-    tap: true
-  });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 17
-  }).addTo(map);
-}
-
-function toggleMap() {
-  const container = document.getElementById('mapContainer');
-  const btn = document.getElementById('mapToggleBtn');
-  mapVisible = !mapVisible;
-  container.style.display = mapVisible ? 'block' : 'none';
-  btn.textContent = mapVisible ? 'Hide Map' : 'Show Map';
-  if (mapVisible && map) {
-    setTimeout(() => map.invalidateSize(), 100);
-  }
-}
-
-function buildMap(hotelList, userLat, userLng) {
-  document.getElementById('mapSection').style.display = 'block';
-  mapVisible = true;
-  document.getElementById('mapToggleBtn').textContent = 'Hide Map';
-  document.getElementById('mapContainer').style.display = 'block';
-
-  initMap();
-
-  // Clear old markers
-  mapMarkers.forEach(m => map.removeLayer(m));
-  mapMarkers = [];
-
-  const bounds = [];
-
-  // User location marker
-  const userIcon = L.divIcon({
-    className: '',
-    html: `<div style="background:#00308f;border:3px solid #FFD700;border-radius:50%;
-                width:16px;height:16px;box-shadow:0 2px 6px rgba(0,0,0,0.5)"></div>`,
-    iconSize: [16, 16],
-    iconAnchor: [8, 8]
-  });
-  const userMarker = L.marker([userLat, userLng], { icon: userIcon })
-    .addTo(map)
-    .bindPopup('<strong>📍 Your Location</strong>');
-  mapMarkers.push(userMarker);
-  bounds.push([userLat, userLng]);
-
-  // Hotel markers
-  hotelList.forEach(h => {
-    const hLat = parseFloat(h.lat);
-    const hLng = parseFloat(h.lng);
-    if (!hLat || !hLng) return;
-
-    const isH = h.chain === 'hilton';
-    const milNum = parseFloat((h.mil_rate || '').replace(/[^0-9.]/g, '')) || null;
-    const withinPD = perDiemRate && milNum ? milNum <= perDiemRate : null;
-
-    const bgColor = isH ? '#0d3b8a' : '#8a0d0d';
-    const borderColor = withinPD === true ? '#1a7a3c' : withinPD === false ? '#b85c00' : '#ffffff';
-    const borderWidth = withinPD !== null ? '3px' : '2px';
-
-    const icon = L.divIcon({
-      className: '',
-      html: `<div style="
-        background:${bgColor};
-        border:${borderWidth} solid ${borderColor};
-        border-radius:50% 50% 50% 0;
-        width:20px;height:20px;
-        transform:rotate(-45deg);
-        box-shadow:0 2px 5px rgba(0,0,0,0.35)">
-      </div>`,
-      iconSize: [20, 20],
-      iconAnchor: [10, 20],
-      popupAnchor: [0, -22]
-    });
-
-    const pdLine = perDiemRate && milNum
-      ? `<br><span style="color:${withinPD ? '#1a7a3c' : '#b85c00'};font-weight:600">
-          ${withinPD ? '✅ Within per diem' : '🚫 Exceeds per diem'}
-          (${withinPD ? '-' : '+'}$${Math.abs(perDiemRate - milNum)})
-        </span>`
-      : '';
-
-    const popup = `
-      <div style="font-family:-apple-system,sans-serif;min-width:160px">
-        <strong style="font-size:13px;color:#00308f">${h.name}</strong><br>
-        <span style="font-size:11px;color:#666">${isH ? 'Hilton' : 'Marriott'} · ${parseFloat(h.distance).toFixed(1)} mi</span><br>
-        <span style="font-size:11px">${h.address}</span>
-        ${h.mil_rate ? `<br><span style="font-size:12px;font-weight:600">Mil rate: ${h.mil_rate}</span>` : ''}
-        ${pdLine}
-        <br><a href="https://maps.google.com/?q=${encodeURIComponent(h.address)}"
-           target="_blank"
-           style="font-size:11px;color:#00308f;display:inline-block;margin-top:4px">
-          Open in Google Maps ↗
-        </a>
-      </div>`;
-
-    const marker = L.marker([hLat, hLng], { icon })
-      .addTo(map)
-      .bindPopup(popup, { maxWidth: 240 });
-
-    mapMarkers.push(marker);
-    bounds.push([hLat, hLng]);
-  });
-
-  // Fit map to show all markers
-  if (bounds.length > 1) {
-    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 13 });
-  } else {
-    map.setView([userLat, userLng], 11);
-  }
-
-  // Refresh size after show
-  setTimeout(() => map.invalidateSize(), 200);
-}
 </script>
 
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>
