@@ -844,8 +844,12 @@ async function doSearch(){
     if(!hotels.length)throw new Error('No Hilton or Marriott properties found within 25 miles');
     document.getElementById('status').innerHTML='';
     render();
-    // Build map with all found hotels
-    buildMap(hotels, lat, lng);
+    // Build map — wrapped in setTimeout to ensure Leaflet is ready
+    setTimeout(() => {
+      if (typeof buildMap === 'function') {
+        buildMap(hotels, lat, lng);
+      }
+    }, 100);
     showMapAfterSearch();
   }catch(e){
     showErr(`Search failed: ${e.message}. Check your connection and try again.`);
@@ -1016,10 +1020,10 @@ function showMapAfterSearch() {
   const btn = document.getElementById('mapToggleBtn');
   btn.style.display = 'block';
 }
-</script>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
+
+/* ── MAP FUNCTIONS (moved inline to avoid scope issues) ── */
+
 /* ════════════════════════════════════
    MAP — Leaflet + OpenStreetMap
 ════════════════════════════════════ */
@@ -1148,5 +1152,8 @@ function buildMap(hotelList, userLat, userLng) {
   setTimeout(() => map.invalidateSize(), 200);
 }
 </script>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>
