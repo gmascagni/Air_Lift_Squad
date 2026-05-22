@@ -784,18 +784,22 @@ Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real 
   });
 
   // Handle overload (529) and rate limit (429) — return status for retry logic
+  let data;
+  try { data = await resp.json(); } catch(e) { throw new Error(`HTTP ${resp.status} — could not parse response`); }
+
+  // Retryable: overloaded (529) or rate limit (429)
   if(resp.status===529||resp.status===429){
-    const e=await resp.json().catch(()=>({}));
-    const err=new Error(e.error?.message||`Server busy (${resp.status})`);
+    const err=new Error(data?.error?.message||`API busy (${resp.status}) — will retry`);
     err.retryable=true;
     throw err;
   }
-  if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${resp.status}`);}
-  const data=await resp.json();
+  if(!resp.ok){
+    throw new Error(`HTTP ${resp.status}: ${data?.error?.message||JSON.stringify(data).slice(0,120)}`);
+  }
   if(data.error){
-    const err=new Error(data.error.message||'API error');
-    // overloaded errors from Anthropic come back as 200 with error body
-    if(data.error.type==='overloaded_error'||data.error.message?.toLowerCase().includes('overload')){
+    const msg = data.error.message||data.error.type||JSON.stringify(data.error);
+    const err=new Error(msg);
+    if(data.error.type==='overloaded_error'||msg.toLowerCase().includes('overload')){
       err.retryable=true;
     }
     throw err;
@@ -890,7 +894,17 @@ async function doSearch(){
     refreshMap();
     showMapAfterSearch();
   }catch(e){
-    showErr(`Search failed: ${e.message}. Check your connection and try again.`);
+    showErr(`
+      <strong>Search failed:</strong> ${e.message}
+      <br><br>
+      <small>
+        💡 <strong>If you keep seeing "overloaded":</strong><br>
+        1. Check your API key is valid at 
+           <a href="https://console.anthropic.com" target="_blank" style="color:#00308f">console.anthropic.com</a><br>
+        2. Check your account has available credits<br>
+        3. The model name may have changed — contact support
+      </small>
+    `);
   }
 
   document.getElementById('dbw').classList.remove('off');
