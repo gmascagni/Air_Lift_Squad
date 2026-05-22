@@ -811,26 +811,18 @@ Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real 
   return JSON.parse(text.slice(s,e2+1));
 }
 
-/* ── callAPI with auto-retry (3 attempts, exponential backoff) ── */
+/* ── callAPI with auto-retry (2 attempts, short backoff) ── */
 async function callAPI(chainName){
-  const maxAttempts=3;
-  const delays=[3000,6000]; // wait 3s then 6s between retries
-  let lastErr;
-  for(let attempt=1;attempt<=maxAttempts;attempt++){
-    try{
-      return await callAPIonce(chainName);
-    } catch(err){
-      lastErr=err;
-      if(err.retryable && attempt<maxAttempts){
-        const wait=delays[attempt-1]||6000;
-        load(`API busy — retrying ${chainName} in ${wait/1000}s… (attempt ${attempt}/${maxAttempts})`);
-        await sleep(wait);
-      } else {
-        throw err; // non-retryable or out of attempts
-      }
-    }
+  // First attempt
+  try{
+    return await callAPIonce(chainName);
+  } catch(err){
+    if(!err.retryable) throw err;
+    // One retry after 4 seconds
+    load(`API busy — retrying in 4s…`);
+    await sleep(4000);
+    return await callAPIonce(chainName);
   }
-  throw lastErr;
 }
 
 /* ── Main search ── */
