@@ -2,172 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="458th Hotels">
-<meta name="theme-color" content="#00308f">
 <meta name="color-scheme" content="light">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAiPgogICAgICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIzMCIvPgogICAgPC9jbGlwUGF0aD4KICA8L2RlZnM+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9IiMwMDIwNWIiLz4KICA8cmVjdCB4PSIyIiB5PSIxNCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZENzAwIiBjbGlwLXBhdGg9InVybCgjY2xpcCkiLz4KICA8cmVjdCB4PSIyIiB5PSIzNCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZENzAwIiBjbGlwLXBhdGg9InVybCgjY2xpcCkiLz4KICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIzMiIgcng9IjEwIiByeT0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC40KSIgc3Ryb2tlLXdpZHRoPSIxLjIiIGNsaXAtcGF0aD0idXJsKCNjbGlwKSIvPgogIDxlbGxpcHNlIGN4PSIzMiIgY3k9IjMyIiByeD0iMjAiIHJ5PSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyMTUsMCwwLjQpIiBzdHJva2Utd2lkdGg9IjEuMiIgY2xpcC1wYXRoPSJ1cmwoI2NsaXApIi8+CiAgPGxpbmUgeDE9IjIiIHkxPSIyMiIgeDI9IjYyIiB5Mj0iMjIiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC4zNSkiIHN0cm9rZS13aWR0aD0iMSIgY2xpcC1wYXRoPSJ1cmwoI2NsaXApIi8+CiAgPGxpbmUgeDE9IjIiIHkxPSIzMiIgeDI9IjYyIiB5Mj0iMzIiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC4zNSkiIHN0cm9rZS13aWR0aD0iMSIgY2xpcC1wYXRoPSJ1cmwoI2NsaXApIi8+CiAgPGxpbmUgeDE9IjIiIHkxPSI0MiIgeDI9IjYyIiB5Mj0iNDIiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC4zNSkiIHN0cm9rZS13aWR0aD0iMSIgY2xpcC1wYXRoPSJ1cmwoI2NsaXApIi8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGVsbGlwc2UgY3g9IjI0IiBjeT0iMjAiIHJ4PSI4IiByeT0iNiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEyKSIvPgo8L3N2Zz4=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0iYWMiPjxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9Ijc4Ii8+PC9jbGlwUGF0aD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0iIzAwMjA1YiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9Ijc4IiBmaWxsPSIjMDAxODQ1IiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPHJlY3QgeD0iMTAiIHk9IjQ2IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjRkZENzAwIiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPHJlY3QgeD0iMTAiIHk9Ijk4IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjRkZENzAwIiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iOTAiIHJ4PSIyNiIgcnk9Ijc4IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDIxNSwwLDAuMzUpIiBzdHJva2Utd2lkdGg9IjIiIGNsaXAtcGF0aD0idXJsKCNhYykiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI5MCIgcng9IjU0IiByeT0iNzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC4zNSkiIHN0cm9rZS13aWR0aD0iMiIgY2xpcC1wYXRoPSJ1cmwoI2FjKSIvPgogIDxsaW5lIHgxPSIxMiIgeTE9IjYwIiB4Mj0iMTY4IiB5Mj0iNjAiIHN0cm9rZT0icmdiYSgyNTUsMjE1LDAsMC4zKSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGNsaXAtcGF0aD0idXJsKCNhYykiLz4KICA8bGluZSB4MT0iMTIiIHkxPSI5MCIgeDI9IjE2OCIgeTI9IjkwIiBzdHJva2U9InJnYmEoMjU1LDIxNSwwLDAuMykiIHN0cm9rZS13aWR0aD0iMS41IiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPGxpbmUgeDE9IjEyIiB5MT0iMTEyIiB4Mj0iMTY4IiB5Mj0iMTEyIiBzdHJva2U9InJnYmEoMjU1LDIxNSwwLDAuMykiIHN0cm9rZS13aWR0aD0iMS41IiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIzIiBjbGlwLXBhdGg9InVybCgjYWMpIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI5MCw2OCA5NSw4MyAxMTEsODMgOTksOTMgMTAzLDEwOCA5MCw5OSA3NywxMDggODEsOTMgNjksODMgODUsODMiIGZpbGw9IiNGRkQ3MDAiLz4KPC9zdmc+">
+<meta name="theme-color" content="#00308f">
 <title>458th Airlift Squadron — Hotel Finder</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-:root {
-  --usaf:#00308f;   /* Air Force Blue */
-  --navy:#00205b;   /* Dark Air Force Blue */
-  --gold:#c8a000;   /* Gold accent — used sparingly */
-  --bg:#f0f4f8;     /* Light blue-grey background */
-  --card:#ffffff;   /* White cards */
-  --border:rgba(0,48,143,0.15);
-  --txt:#0d1b2e;    /* Near-black for readability */
-  --txt2:#4a5568;   /* Muted text */
-  --link:#00308f;   /* AF Blue links */
-  --green:#1a7a3c;  /* Available / within per diem */
-  --amber:#b85c00;  /* Over per diem */
+:root{
+  --usaf:#00308f; --navy:#00205b; --gold:#c8a000;
+  --bg:#f0f4f8; --card:#ffffff; --border:rgba(0,48,143,0.15);
+  --txt:#0d1b2e; --txt2:#4a5568; --link:#00308f;
+  --green:#1a7a3c; --amber:#b85c00;
   --r1:8px; --r2:12px; --r3:16px;
   --sb:env(safe-area-inset-bottom,0px);
   --st:env(safe-area-inset-top,0px);
 }
-/* Force light mode always — no dark mode */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  background:#f0f4f8;color:#0d1b2e;
-  padding-bottom:calc(20px + var(--sb));
-  -webkit-text-size-adjust:100%;overscroll-behavior:none;}
+html,body{min-height:100%;background:#f0f4f8;color:#0d1b2e}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  padding-bottom:calc(24px + var(--sb));-webkit-text-size-adjust:100%;overscroll-behavior:none}
 
-/* ── CHROME BANNER ── */
-#chromeBanner{display:none;background:#00308f;color:#fff;
-  padding:10px 16px;font-size:13px;line-height:1.5;
-  flex-direction:column;gap:8px;}
-#chromeBanner a{display:inline-block;background:#FFD700;color:#00205b!important;color:#fff;
-  padding:8px 16px;border-radius:var(--r1);font-weight:600;
-  text-decoration:none;font-size:13px;text-align:center;}
-.dismiss{background:none;border:none;color:rgba(255,255,255,.6);
-  font-size:12px;cursor:pointer;padding:0;text-decoration:underline;}
-
-/* ── SKY ── */
-.sky{position:relative;width:100vw;margin-left:calc(-50vw + 50%);;height:110px;background:#00205b;overflow:hidden;
+/* SKY */
+.sky{position:relative;width:100vw;margin-left:calc(-50vw + 50%);
+  height:110px;background:#00205b;overflow:hidden;
   border-bottom:3px solid #FFD700;padding-top:var(--st)}
 .cloud-wrap{position:absolute;animation:drift linear infinite;opacity:1}
 .cw1{top:8px;animation-duration:22s;animation-delay:-6s}
 .cw2{top:40px;animation-duration:30s;animation-delay:-15s}
 .cw3{top:18px;animation-duration:26s;animation-delay:-10s}
-@keyframes drift{from{left:-130px}to{left:calc(100% + 130px)}}
+@keyframes drift{from{left:-160px}to{left:calc(100% + 160px)}}
 .jet{position:absolute;top:10px;animation:fly 15s linear infinite}
-@keyframes fly{0%{left:calc(100% + 60px)}100%{left:-240px}}
+@keyframes fly{0%{left:calc(100% + 20px)}100%{left:-320px}}
 
-/* ── HEADER ── */
-.sq{text-align:center;font-size:13px;font-weight:700;color:var(--gold);
-  letter-spacing:.14em;padding:12px 16px 4px;text-transform:uppercase}
-.hdr{text-align:center;padding:2px 16px 12px;border-bottom:1px solid rgba(0,48,143,0.12);background:#ffffff}
+/* HEADER */
+.sq{text-align:center;font-size:13px;font-weight:700;color:#ffffff;background:#00308f;
+  letter-spacing:.14em;padding:10px 16px 6px;text-transform:uppercase}
+.hdr{text-align:center;padding:4px 16px 12px;border-bottom:1px solid rgba(0,48,143,0.12);background:#fff}
 .hdr-sub{font-size:12px;color:#4a5568;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
 .hdr-ttl{font-size:22px;font-weight:600;color:#00308f}
 
-/* ── PER DIEM BANNER ── */
-#pdBanner{display:none;margin:10px 16px 0;
-  background:linear-gradient(135deg,#00308f,#00205b);
-  border-radius:var(--r2);padding:12px 14px;border-left:4px solid var(--gold);}
-.pd-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.8);
-  letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+/* PER DIEM BANNER */
+#pdBanner{display:none;margin:10px 16px 0;background:linear-gradient(135deg,#00308f,#00205b);
+  border-radius:var(--r2);padding:12px 14px;border-left:4px solid #FFD700}
+.pd-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:6px}
+.pd-title a{color:#FFD700;font-size:10px;text-decoration:underline;letter-spacing:.05em}
 .pd-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.pd-loc{font-size:13px;color:#ffffff;font-weight:500;flex:1}
+.pd-loc{font-size:13px;color:#fff;font-weight:500;flex:1}
 .pd-rates{display:flex;gap:20px}
 .pd-item{text-align:right}
-.pd-lbl{font-size:10px;color:rgba(255,255,255,.5)}
+.pd-lbl{font-size:10px;color:rgba(255,255,255,.55)}
 .pd-val{font-size:17px;font-weight:700;color:#FFD700}
 
-/* ── LOCATE ── */
+/* LOCATE */
 .locate{display:flex;flex-direction:column;align-items:center;padding:20px 16px 8px;gap:10px;background:#f0f4f8}
 .dbw{position:relative;width:120px;height:120px;cursor:pointer;
-  -webkit-user-select:none;user-select:none;transition:transform .12s ease;}
+  -webkit-user-select:none;user-select:none;transition:transform .12s ease}
 .dbw:active{transform:scale(.91)}
 .dbw.off{opacity:.45;pointer-events:none}
 .locate-hint{font-size:13px;color:#00308f;font-weight:500;text-align:center}
 
-/* ── IOS HELP ── */
+/* IOS HELP */
 #iosHelp{display:none;margin:8px 16px;background:#f0f4f8;border:1.5px solid #00308f;
   border-radius:var(--r2);padding:12px 14px;font-size:13px;color:#0d1b2e;line-height:1.6}
 #iosHelp strong{display:block;margin-bottom:4px;font-size:14px}
 #iosHelp ol{padding-left:18px;margin-top:4px}
 #iosHelp li{margin-bottom:3px}
 
+/* CHROME BANNER */
+#chromeBanner{display:none;background:#00308f;color:#fff;
+  padding:10px 16px;font-size:13px;line-height:1.5;flex-direction:column;gap:8px}
+#chromeBanner a{display:inline-block;background:#FFD700;color:#00205b;
+  padding:8px 16px;border-radius:var(--r1);font-weight:600;text-decoration:none;font-size:13px}
+.dismiss{background:none;border:none;color:rgba(255,255,255,.6);font-size:12px;cursor:pointer;text-decoration:underline}
 
-/* ── FORM ── */
+/* FORM */
 .fsec{padding:8px 16px 4px}
-.drow{display:flex;align-items:center;gap:10px;background:#ffffff;
-  border:1px solid rgba(0,48,143,0.2);border-radius:var(--r2);padding:12px 14px;}
+.drow{display:flex;align-items:center;gap:10px;background:#fff;
+  border:1px solid rgba(0,48,143,0.2);border-radius:var(--r2);padding:12px 14px}
 .dlbl{font-size:14px;color:#4a5568;white-space:nowrap;flex-shrink:0}
 .drow input[type=date]{flex:1;font-size:15px;color:#0d1b2e;background:transparent;
-  border:none;outline:none;-webkit-appearance:none;font-family:inherit;min-height:44px;}
+  border:none;outline:none;-webkit-appearance:none;font-family:inherit;min-height:44px}
 
-/* ── PILLS ── */
+/* PILLS */
 .pills{display:flex;gap:8px;padding:10px 16px 6px;justify-content:center}
 .pill{font-size:13px;padding:6px 18px;border-radius:20px;border:1.5px solid #00308f;
-  color:#00308f;cursor:pointer;background:#ffffff;min-height:36px;
-  display:flex;align-items:center;-webkit-user-select:none;user-select:none;
-  transition:background .15s,color .15s;}
-.pill.on{background:#00308f;color:#ffffff;border-color:#00308f;font-weight:600}
+  color:#00308f;cursor:pointer;background:#fff;min-height:36px;
+  display:flex;align-items:center;-webkit-user-select:none;user-select:none}
+.pill.on{background:#00308f;color:#fff;font-weight:600}
 
+/* GEO */
+.geo{font-size:12px;color:#4a5568;text-align:center;padding:0 16px 6px}
 
-/* ── RESULTS ── */
+/* RESULTS HEADER */
 .reshdr{text-align:center;font-size:13px;color:#4a5568;padding:4px 16px 8px;display:none}
-.results{padding:0 16px;display:flex;flex-direction:column;gap:12px;background:#f0f4f8;padding-top:4px}
-
-/* ── MAP ── */
-#mapSection{display:none;margin:0 16px 12px;border-radius:12px;overflow:hidden;
-  border:1.5px solid rgba(0,48,143,0.2);box-shadow:0 2px 8px rgba(0,48,143,0.1)}
-#mapCanvas{width:100%;height:320px;background:#e8eef5;position:relative;overflow:hidden}
-.map-toggle{display:none;margin:8px 16px 4px;
-  background:#00308f;color:#fff;border:none;border-radius:8px;
-  padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer;
-  width:calc(100% - 32px);text-align:center;letter-spacing:.02em}
-.map-toggle:active{opacity:.85}
-.map-pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;font-size:20px;
-  filter:drop-shadow(0 1px 3px rgba(0,0,0,0.4));transition:transform .15s}
-.map-pin:active{transform:translate(-50%,-100%) scale(1.3)}
-.map-pin.hilton{color:#0d3b8a}
-.map-pin.marriott{color:#8a0d0d}
-.map-pin.you{color:#00308f;font-size:24px}
-.map-popup{position:absolute;background:#fff;border-radius:8px;padding:8px 10px;
-  box-shadow:0 3px 12px rgba(0,0,0,0.2);min-width:160px;max-width:220px;
-  border-left:3px solid #00308f;z-index:10;pointer-events:none;
-  transform:translate(-50%,-100%) translateY(-28px)}
-.map-popup strong{display:block;font-size:13px;color:#0d1b2e;line-height:1.3;margin-bottom:2px}
-.map-popup span{font-size:11px;color:#4a5568}
-.map-popup .mp-rate{font-size:12px;font-weight:600;margin-top:3px}
-.map-popup .mp-ok{color:#1a7a3c}.map-popup .mp-no{color:#b85c00}
-.map-att{position:absolute;bottom:3px;right:6px;font-size:9px;color:rgba(0,0,0,0.4)}
-.map-legend{display:flex;gap:12px;padding:8px 12px;background:#f8fafc;
-  border-top:1px solid rgba(0,48,143,0.1);flex-wrap:wrap}
-.ml-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#4a5568}
 .leg-row{display:none;justify-content:center;gap:14px;padding:2px 16px 6px;flex-wrap:wrap}
 .leg{display:flex;align-items:center;gap:5px;font-size:11px;color:#4a5568}
 .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
-/* ── HOTEL CARD ── */
-.hcard{background:#ffffff;border:1px solid rgba(0,48,143,0.12);border-radius:var(--r3);padding:14px 16px}
+/* ── BIG MAP ── */
+#mapSection{display:none;margin:0 16px 16px;border-radius:var(--r3);overflow:hidden;
+  border:1.5px solid rgba(0,48,143,0.2);box-shadow:0 2px 12px rgba(0,48,143,0.1)}
+#mapHeader{background:#00308f;color:#fff;padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center}
+#mapHeader span{font-size:13px;font-weight:600}
+.map-toggle-btn{font-size:12px;background:rgba(255,255,255,.15);border:none;
+  color:#fff;padding:4px 12px;border-radius:20px;cursor:pointer;font-weight:500}
+#mapContainer{height:340px;width:100%}
+.map-legend{background:#fff;padding:8px 12px;display:flex;gap:14px;
+  border-top:1px solid rgba(0,48,143,0.1);flex-wrap:wrap}
+.map-leg{display:flex;align-items:center;gap:5px;font-size:11px;color:#4a5568}
+.map-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* HOTEL CARDS */
+.results{padding:0 16px;display:flex;flex-direction:column;gap:12px;background:#f0f4f8;padding-top:4px}
+.hcard{background:#fff;border:1px solid rgba(0,48,143,0.12);border-radius:var(--r3);padding:14px 16px}
 .hcard.pd-ok{border:2px solid #1a7a3c;background:#fafffe}
 .hcard.pd-no{border:2px solid #b85c00;background:#fffaf8}
-
 .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
 .cname{font-size:15px;font-weight:600;line-height:1.3;flex:1;color:#0d1b2e}
 .badges{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
 .badge{font-size:11px;padding:3px 8px;border-radius:6px;white-space:nowrap;font-weight:600}
 .bh{background:#ddeafc;color:#0d3b8a}.bm{background:#fcdede;color:#8a0d0d}
 .bpd-ok{background:#d4edda;color:#155724}.bpd-no{background:#fff3cd;color:#856404}
+.cmeta{font-size:12px;color:#4a5568;margin-bottom:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.stars{color:#c8a000;font-size:13px;letter-spacing:1px}
 
-.cmeta{font-size:12px;color:#4a5568;margin-bottom:8px;
-  display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+/* Map link on card */
 .caddr{font-size:13px;color:#00308f;text-decoration:none;display:block;
   margin-bottom:10px;line-height:1.4;word-break:break-word}
+.caddr:hover{text-decoration:underline}
 
-/* ── RATE COMPARE ── */
+/* RATE BOX */
 .rate-box{background:#e8eef5;border-radius:var(--r1);padding:10px 12px;margin-bottom:10px}
-.rate-cols{display:flex;gap:0;align-items:stretch;background:#ffffff;border-radius:6px}
+.rate-cols{display:flex;gap:0;align-items:stretch}
 .rate-col{flex:1;padding:0 8px}
 .rate-col:first-child{padding-left:0}
 .rate-col:last-child{padding-right:0}
@@ -175,85 +148,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 .rlbl{font-size:10px;color:#4a5568;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
 .rmil{font-size:16px;font-weight:700;color:#00308f}
 .rstd{font-size:13px;color:#6b7280;text-decoration:line-through}
-.rpd{font-size:16px;font-weight:700;color:var(--gold)}
+.rpd{font-size:16px;font-weight:700;color:#c8a000}
 .verdict{display:flex;align-items:center;gap:8px;margin-top:8px;
   padding:7px 10px;border-radius:var(--r1);border:1.5px solid var(--border)}
 .verdict.ok{border-color:#1a7a3c;background:#f0faf4}
 .verdict.no{border-color:#b85c00;background:#fff8f0}
-
 .verdict-icon{font-size:18px;flex-shrink:0}
 .verdict-txt{font-size:12px;line-height:1.4}
 .verdict-txt strong{font-size:13px}
-
 .avrow{display:flex;justify-content:space-between;align-items:center;
   border-top:1px solid rgba(0,48,143,0.1);padding-top:10px}
-.avy{font-size:13px;color:var(--green);font-weight:500}
-.avn{font-size:13px;color:var(--usaf);font-weight:500}
+.avy{font-size:13px;color:#1a7a3c;font-weight:500}
+.avn{font-size:13px;color:#c8102e;font-weight:500}
 .avu{font-size:13px;color:#6b7280}
 .bbtn{font-size:13px;font-weight:500;padding:7px 16px;min-height:36px;
-  border-radius:var(--r1);border:.5px solid var(--border);background:#f0f4f8;
-  color:#00308f;text-decoration:none;display:flex;align-items:center;}
-.bbtn:active{opacity:.6}
+  border-radius:var(--r1);border:1px solid rgba(0,48,143,0.2);background:#f0f4f8;
+  color:#00308f;text-decoration:none;display:flex;align-items:center}
 
-/* ── STATUS ── */
+/* STATUS */
 .lbox{text-align:center;padding:32px 16px;color:#4a5568;font-size:14px}
-.spin{width:28px;height:28px;border:2.5px solid var(--border);border-top-color:#00308f;
-  border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px;}
+.spin{width:28px;height:28px;border:2.5px solid rgba(0,48,143,0.2);
+  border-top-color:#00308f;border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ebox{background:#fff0f0;border:.5px solid #ffb3b3;border-radius:var(--r2);
-  padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.5;}
-
-.geo{font-size:12px;color:#4a5568;text-align:center;padding:0 16px 6px}
-
-/* ── MAP ── */
-#mapSection{display:none;margin:0 16px 16px;border-radius:var(--r3);overflow:hidden;
-  border:1.5px solid rgba(0,48,143,0.2);box-shadow:0 2px 12px rgba(0,48,143,0.12)}
-#mapHeader{background:#00308f;color:#fff;padding:10px 14px;
-  display:flex;justify-content:space-between;align-items:center}
-#mapHeader span{font-size:13px;font-weight:600;letter-spacing:.04em}
-#mapToggleBtn{font-size:12px;background:rgba(255,255,255,.15);border:none;
-  color:#fff;padding:4px 12px;border-radius:20px;cursor:pointer;font-weight:500}
-#mapToggleBtn:active{opacity:.8}
-#mapContainer{height:320px;width:100%}
-.hilton-pin{background:#0d3b8a;border:2px solid #fff;border-radius:50% 50% 50% 0;
-  width:18px;height:18px;transform:rotate(-45deg);box-shadow:0 2px 4px rgba(0,0,0,0.3)}
-.marriott-pin{background:#8a0d0d;border:2px solid #fff;border-radius:50% 50% 50% 0;
-  width:18px;height:18px;transform:rotate(-45deg);box-shadow:0 2px 4px rgba(0,0,0,0.3)}
-.user-pin{background:#00308f;border:3px solid #FFD700;border-radius:50%;
-  width:16px;height:16px;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
-.map-legend{background:#fff;padding:8px 12px;display:flex;gap:16px;
-  border-top:1px solid rgba(0,48,143,0.1);flex-wrap:wrap}
-.map-leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#4a5568}
-.map-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  padding:12px 16px;margin:0 16px;font-size:13px;color:#8a0d0d;line-height:1.5}
 </style>
 </head>
 <body style="background:#f0f4f8!important;color:#0d1b2e!important">
 
 <script>const WORKER_URL='https://hotel-proxy.gmascagni.workers.dev';</script>
 
-<!-- iOS Chrome Banner -->
+<!-- Chrome banner -->
 <div id="chromeBanner">
-  <div><strong>📍 Better location support in Chrome</strong><br>
-  Safari on iOS sometimes blocks location for web apps. Tap below to open in Chrome.</div>
+  <div><strong>📍 Better in Chrome</strong><br>Safari on iOS sometimes blocks location. Open in Chrome for best results.</div>
   <a id="chromeLink" href="#">Open in Chrome</a>
   <button class="dismiss" onclick="document.getElementById('chromeBanner').style.display='none'">Dismiss</button>
 </div>
 
-<!-- Sky with Learjet 35 / C-21A -->
+<!-- Sky / plane -->
 <div class="sky">
-  <!-- Fluffy SVG clouds -->
   <div class="cloud-wrap cw1">
-    <svg viewBox="0 0 120 45" xmlns="http://www.w3.org/2000/svg" style="display:block;width:120px;height:45px">
+    <svg viewBox="0 0 120 45" style="display:block;width:120px;height:45px" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="60" cy="32" rx="55" ry="13" fill="rgba(255,255,255,0.18)"/>
       <ellipse cx="40" cy="26" rx="28" ry="18" fill="rgba(255,255,255,0.15)"/>
       <ellipse cx="65" cy="22" rx="32" ry="20" fill="rgba(255,255,255,0.17)"/>
       <ellipse cx="88" cy="27" rx="24" ry="16" fill="rgba(255,255,255,0.14)"/>
       <ellipse cx="55" cy="18" rx="20" ry="14" fill="rgba(255,255,255,0.13)"/>
-      <ellipse cx="75" cy="16" rx="18" ry="13" fill="rgba(255,255,255,0.12)"/>
     </svg>
   </div>
   <div class="cloud-wrap cw2">
-    <svg viewBox="0 0 80 35" xmlns="http://www.w3.org/2000/svg" style="display:block;width:80px;height:35px">
+    <svg viewBox="0 0 80 35" style="display:block;width:80px;height:35px" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="40" cy="24" rx="36" ry="11" fill="rgba(255,255,255,0.14)"/>
       <ellipse cx="28" cy="19" rx="20" ry="14" fill="rgba(255,255,255,0.12)"/>
       <ellipse cx="48" cy="15" rx="22" ry="15" fill="rgba(255,255,255,0.15)"/>
@@ -261,17 +205,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     </svg>
   </div>
   <div class="cloud-wrap cw3">
-    <svg viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg" style="display:block;width:150px;height:50px">
+    <svg viewBox="0 0 150 50" style="display:block;width:150px;height:50px" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="75" cy="36" rx="70" ry="14" fill="rgba(255,255,255,0.16)"/>
       <ellipse cx="50" cy="28" rx="35" ry="22" fill="rgba(255,255,255,0.13)"/>
       <ellipse cx="80" cy="22" rx="38" ry="24" fill="rgba(255,255,255,0.15)"/>
       <ellipse cx="112" cy="28" rx="30" ry="19" fill="rgba(255,255,255,0.13)"/>
-      <ellipse cx="65" cy="17" rx="24" ry="16" fill="rgba(255,255,255,0.11)"/>
-      <ellipse cx="95" cy="14" rx="22" ry="15" fill="rgba(255,255,255,0.10)"/>
     </svg>
   </div>
   <div class="jet">
-    <img src="data:image/png;base64,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" alt="USAF C-21A" style="height:86px;width:auto;display:block;"/>
+    <img src="data:image/png;base64,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" alt="USAF C-21A" style="height:86px;width:auto;display:block"/>
   </div>
 </div>
 
@@ -281,26 +223,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   <div class="hdr-ttl">Hilton &amp; Marriott Finder</div>
 </div>
 
-<!-- GSA Per Diem Banner -->
+<!-- Per Diem Banner -->
 <div id="pdBanner">
   <div class="pd-title">📋 GSA Per Diem — FY2026 &nbsp;·&nbsp;
-    <a id="pdGsaLink" href="https://www.gsa.gov/travel/plan-book/per-diem-rates" 
-       target="_blank" rel="noopener"
-       style="color:var(--gold);font-size:10px;text-decoration:underline;letter-spacing:.05em">
-      Verify on GSA.gov ↗
-    </a>
+    <a id="pdGsaLink" href="https://www.gsa.gov/travel/plan-book/per-diem-rates"
+       target="_blank" rel="noopener">Verify on GSA.gov ↗</a>
   </div>
   <div class="pd-row">
     <div class="pd-loc" id="pdLoc">Fetching…</div>
     <div class="pd-rates">
-      <div class="pd-item">
-        <div class="pd-lbl">Lodging Cap</div>
-        <div class="pd-val" id="pdLodging">—</div>
-      </div>
-      <div class="pd-item">
-        <div class="pd-lbl">M&amp;IE</div>
-        <div class="pd-val" id="pdMie">—</div>
-      </div>
+      <div class="pd-item"><div class="pd-lbl">Lodging Cap</div><div class="pd-val" id="pdLodging">—</div></div>
+      <div class="pd-item"><div class="pd-lbl">M&amp;IE</div><div class="pd-val" id="pdMie">—</div></div>
     </div>
   </div>
 </div>
@@ -321,7 +254,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
       <line x1="1"  y1="60" x2="119" y2="60" stroke="#FFD700" stroke-width="1" opacity=".2"/>
       <polygon points="60,7 55,19 65,19" fill="#FFD700" opacity=".9"/>
       <line x1="60" y1="9" x2="60" y2="40" stroke="#FFD700" stroke-width="2.5" opacity=".9"/>
-      <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif" fill="#fff" letter-spacing="2">
+      <text font-size="10" font-weight="bold" font-family="-apple-system,sans-serif" fill="#FFD700" letter-spacing="2">
         <textPath href="#arc" startOffset="50%" text-anchor="middle">LOCATE ME</textPath>
       </text>
     </svg>
@@ -329,14 +262,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   <div class="locate-hint">Tap to find hotels &amp; live per diem rates</div>
 </div>
 
-<!-- iOS location help -->
 <div id="iosHelp">
   <strong>📍 Allow Location Access on iPhone/iPad</strong>
   iOS blocked location. To fix:
   <ol>
     <li>Open <strong>Settings → Privacy &amp; Security → Location Services</strong></li>
     <li>Make sure Location Services is <strong>ON</strong></li>
-    <li>Find <strong>Safari</strong> (or Chrome) → set to <strong>"While Using"</strong></li>
+    <li>Find <strong>Safari</strong> → set to <strong>"While Using"</strong></li>
     <li>Return here and tap Locate Me again</li>
   </ol>
 </div>
@@ -358,282 +290,170 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 
 <div id="reshdr" class="reshdr"></div>
 <div id="legRow" class="leg-row">
-  <div class="leg"><div class="leg-dot" style="background:#1a7a3c"></div>Within per diem — bookable</div>
-  <div class="leg"><div class="leg-dot" style="background:var(--amber)"></div>Exceeds per diem — needs auth</div>
+  <div class="leg"><div class="leg-dot" style="background:#1a7a3c"></div>Within per diem</div>
+  <div class="leg"><div class="leg-dot" style="background:#b85c00"></div>Exceeds per diem</div>
+  <div class="leg"><div class="leg-dot" style="background:#0d3b8a"></div>Hilton</div>
+  <div class="leg"><div class="leg-dot" style="background:#8a0d0d"></div>Marriott</div>
 </div>
+
 <div id="status"></div>
 
-<!-- Map toggle button -->
-<button class="map-toggle" id="mapToggleBtn" onclick="toggleMap()">🗺️ Show Map View</button>
-
-<!-- Map section -->
+<!-- BIG MAP with all hotel pins -->
 <div id="mapSection">
-  <div id="mapCanvas">
-    <!-- Map tiles rendered here via JS -->
-    <div class="map-att">© OpenStreetMap contributors</div>
+  <div id="mapHeader">
+    <span>🗺 Hotel Map — Tap a pin for details</span>
+    <button class="map-toggle-btn" onclick="toggleMap()">Hide Map</button>
   </div>
+  <div id="mapContainer"></div>
   <div class="map-legend">
-    <div class="ml-item">📍 You</div>
-    <div class="ml-item"><span style="color:#0d3b8a;font-size:16px">📌</span> Hilton</div>
-    <div class="ml-item"><span style="color:#8a0d0d;font-size:16px">📌</span> Marriott</div>
-    <div class="ml-item"><span style="display:inline-block;width:10px;height:10px;background:#1a7a3c;border-radius:2px"></span> Within PD</div>
-    <div class="ml-item"><span style="display:inline-block;width:10px;height:10px;background:#b85c00;border-radius:2px"></span> Over PD</div>
+    <div class="map-leg"><div class="map-leg-dot" style="background:#00308f;border:2px solid #FFD700"></div>Your location</div>
+    <div class="map-leg"><div class="map-leg-dot" style="background:#0d3b8a"></div>Hilton</div>
+    <div class="map-leg"><div class="map-leg-dot" style="background:#8a0d0d"></div>Marriott</div>
+    <div class="map-leg"><div class="map-leg-dot" style="background:#1a7a3c;border:2px solid #1a7a3c"></div>Within per diem</div>
+    <div class="map-leg"><div class="map-leg-dot" style="background:#b85c00;border:2px solid #b85c00"></div>Over per diem</div>
   </div>
 </div>
 
 <div id="results" class="results"></div>
 
-<!-- MAP SECTION -->
-<div id="mapSection">
-  <div id="mapHeader">
-    <span>🗺 Hotel Map</span>
-    <button id="mapToggleBtn" onclick="toggleMap()">Hide Map</button>
-  </div>
-  <div id="mapContainer"></div>
-  <div class="map-legend">
-    <div class="map-leg-item">
-      <div class="map-leg-dot" style="background:#0d3b8a"></div>Hilton property
-    </div>
-    <div class="map-leg-item">
-      <div class="map-leg-dot" style="background:#8a0d0d"></div>Marriott property
-    </div>
-    <div class="map-leg-item">
-      <div class="map-leg-dot" style="background:#00308f;border:2px solid #FFD700"></div>Your location
-    </div>
-    <div class="map-leg-item">
-      <div class="map-leg-dot" style="background:#1a7a3c"></div>Within per diem
-    </div>
-  </div>
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-/* ── iOS Chrome banner ── */
+/* ════ iOS Chrome banner ════ */
 (function(){
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if (isIOS && isSafari) {
-    const b = document.getElementById('chromeBanner');
-    b.style.display = 'flex';
-    document.getElementById('chromeLink').href =
-      'googlechrome://' + window.location.href.replace(/^https?:\/\//,'');
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+  const isSafari=/^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if(isIOS&&isSafari){
+    document.getElementById('chromeBanner').style.display='flex';
+    document.getElementById('chromeLink').href='googlechrome://'+window.location.href.replace(/^https?:\/\//,'');
   }
 })();
 
-/* ── Date init ── */
-const t  = new Date();
-const ds = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
-document.getElementById('checkin').value = ds;
-document.getElementById('checkin').min   = ds;
+/* ════ Date init ════ */
+const t=new Date();
+const ds=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+document.getElementById('checkin').value=ds;
+document.getElementById('checkin').min=ds;
 
-/* ── State ── */
-let hotels=[], chain='all', lat=null, lng=null, perDiemRate=null;
+/* ════ State ════ */
+let hotels=[],chain='all',lat=null,lng=null,perDiemRate=null,mapObj=null,mapVisible=false;
 
-/* ── Chain filter ── */
-function setChain(el){
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
-  el.classList.add('on'); chain=el.dataset.c; render();
-}
-
-/* ── Helpers ── */
-function stars(r){
-  if(!r)return'';
-  const n=Math.min(5,Math.round(parseFloat(r)));
-  return'★'.repeat(n)+'☆'.repeat(Math.max(0,5-n));
-}
-function haversine(a,b,c,d){
-  const R=3958.8,dL=(c-a)*Math.PI/180,dO=(d-b)*Math.PI/180;
-  const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dO/2)**2;
-  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
-}
-function load(msg){
-  document.getElementById('status').innerHTML=`<div class="lbox"><div class="spin"></div>${msg}</div>`;
-  document.getElementById('results').innerHTML='';
-  document.getElementById('reshdr').style.display='none';
-  document.getElementById('legRow').style.display='none';
-}
+/* ════ Helpers ════ */
+function setChain(el){document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');chain=el.dataset.c;render();}
+function stars(r){if(!r)return'';const n=Math.min(5,Math.round(parseFloat(r)));return'★'.repeat(n)+'☆'.repeat(Math.max(0,5-n));}
+function haversine(a,b,c,d){const R=3958.8,dL=(c-a)*Math.PI/180,dO=(d-b)*Math.PI/180;const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dO/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function load(msg){document.getElementById('status').innerHTML=`<div class="lbox"><div class="spin"></div>${msg}</div>`;document.getElementById('results').innerHTML='';document.getElementById('reshdr').style.display='none';document.getElementById('legRow').style.display='none';document.getElementById('mapSection').style.display='none';}
 function showErr(msg){document.getElementById('status').innerHTML=`<div class="ebox">${msg}</div>`;}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
-/* ── Reverse geocode ── */
-async function getLocation(lat,lng){
-  try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
-      {headers:{'Accept-Language':'en-US,en'}});
-    const d=await r.json();
-    const a=d.address||{};
-    return{
-      zip:(a.postcode||'').split('-')[0],
-      city:a.city||a.town||a.village||'',
-      county:a.county||'',
-      state:a.state||'',
-      code:(a['ISO3166-2-lvl4']||'').split('-')[1]||''
-    };
-  }catch(e){return null;}
+/* ════ MAP ════ */
+function toggleMap(){
+  mapVisible=!mapVisible;
+  document.getElementById('mapSection').style.display=mapVisible?'block':'none';
+  document.querySelectorAll('.map-toggle-btn').forEach(b=>b.textContent=mapVisible?'Hide Map':'Show Map');
+  if(mapVisible&&mapObj)setTimeout(()=>mapObj.invalidateSize(),100);
 }
 
-/* ── GSA Per Diem ── */
-// Known NSA (Non-Standard Area) rates for major metros — FY2026
-// Used as fallback when the GSA API is down (which is frequent)
-const GSA_KNOWN = {
-  // Georgia
-  'GA_FULTON':   { label:'Atlanta / Fulton County, GA',   mie:86,
-    monthly:[182,182,182,182,182,182,182,182,182,197,197,197] },
-  'GA_DEKALB':   { label:'DeKalb County, GA',             mie:86,
-    monthly:[182,182,182,182,182,182,182,182,182,182,182,182] },
-  'GA_COBB':     { label:'Cobb County (Marietta), GA',    mie:68,
-    monthly:[126,126,126,126,126,126,126,126,126,126,126,126] },
-  // Add more as needed
-};
+function buildMap(){
+  document.getElementById('mapSection').style.display='block';
+  document.querySelectorAll('.map-toggle-btn').forEach(b=>b.textContent='Hide Map');
+  mapVisible=true;
 
-function getKnownRate(loc){
-  const st = (loc.code||'').toUpperCase();
-  const county = (loc.county||loc.city||'').toUpperCase();
-  // Fulton County covers: Alpharetta, Atlanta, Roswell, Sandy Springs, etc.
-  if(st==='GA'){
-    if(county.includes('FULTON')||county.includes('ALPHARETTA')||
-       county.includes('ROSWELL')||county.includes('SANDY SPRINGS')||
-       county.includes('JOHNS CREEK')||county.includes('ATLANTA')){
-      const r=GSA_KNOWN['GA_FULTON'];
-      const mo=new Date().getMonth(); // 0=Jan
-      return{lodge:r.monthly[mo],mie:r.mie,label:r.label,known:true};
-    }
-    if(county.includes('DEKALB')){
-      const r=GSA_KNOWN['GA_DEKALB'];
-      const mo=new Date().getMonth();
-      return{lodge:r.monthly[mo],mie:r.mie,label:r.label,known:true};
-    }
-    if(county.includes('COBB')||county.includes('MARIETTA')){
-      const r=GSA_KNOWN['GA_COBB'];
-      const mo=new Date().getMonth();
-      return{lodge:r.monthly[mo],mie:r.mie,label:r.label,known:true};
-    }
+  if(!mapObj){
+    mapObj=L.map('mapContainer',{scrollWheelZoom:false,tap:true});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom:17
+    }).addTo(mapObj);
+  } else {
+    mapObj.eachLayer(l=>{if(l instanceof L.Marker)mapObj.removeLayer(l);});
   }
-  return null;
+
+  const bounds=[];
+
+  /* Your location pin */
+  const youIcon=L.divIcon({
+    className:'',
+    html:`<div style="width:16px;height:16px;background:#00308f;border:3px solid #FFD700;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.5)"></div>`,
+    iconSize:[16,16],iconAnchor:[8,8]
+  });
+  L.marker([lat,lng],{icon:youIcon}).addTo(mapObj)
+    .bindPopup('<strong>📍 Your Location</strong>');
+  bounds.push([lat,lng]);
+
+  /* Hotel pins */
+  const list=chain==='all'?hotels:hotels.filter(h=>h.chain===chain);
+  list.forEach(h=>{
+    const hLat=parseFloat(h.lat),hLng=parseFloat(h.lng);
+    if(!hLat||!hLng)return;
+    const isH=h.chain==='hilton';
+    const milNum=parseFloat((h.mil_rate||'').replace(/[^0-9.]/g,''))||null;
+    const withinPD=perDiemRate&&milNum?milNum<=perDiemRate:null;
+    const pinColor=isH?'#0d3b8a':'#8a0d0d';
+    const borderColor=withinPD===true?'#1a7a3c':withinPD===false?'#b85c00':'#ffffff';
+
+    const icon=L.divIcon({
+      className:'',
+      html:`<div style="width:22px;height:22px;background:${pinColor};border:3px solid ${borderColor};
+        border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+        box-shadow:0 2px 5px rgba(0,0,0,0.35)"></div>`,
+      iconSize:[22,22],iconAnchor:[11,22],popupAnchor:[0,-24]
+    });
+
+    /* Gov rate bubble shown on hover/tap */
+    const govLine=milNum
+      ?`<div style="margin:5px 0 3px;padding:6px 8px;background:${withinPD===true?'#f0faf4':withinPD===false?'#fff8f0':'#f0f4f8'};border-radius:6px;border:1.5px solid ${withinPD===true?'#1a7a3c':withinPD===false?'#b85c00':'rgba(0,48,143,0.2)'};text-align:center">
+          <div style="font-size:10px;color:#4a5568;text-transform:uppercase;letter-spacing:.06em">Mil / Govt Rate</div>
+          <div style="font-size:18px;font-weight:700;color:#00308f">${h.mil_rate}</div>
+          ${perDiemRate?`<div style="font-size:11px;color:${withinPD?'#1a7a3c':'#b85c00'};font-weight:600;margin-top:2px">${withinPD?'✅ Within':'🚫 Exceeds'} per diem (${perDiemRate}/nt)</div>`:'<div style="font-size:11px;color:#4a5568">GSA per diem: tap to search</div>'}
+        </div>`
+      :'<div style="font-size:12px;color:#4a5568;margin-top:4px">Call for mil rate</div>';
+
+    const popup=`
+      <div style="font-family:-apple-system,sans-serif;min-width:190px;padding:2px">
+        <div style="font-size:14px;font-weight:700;color:#00308f;margin-bottom:2px">${h.name}</div>
+        <div style="font-size:11px;color:#4a5568;margin-bottom:4px">${isH?'Hilton':'Marriott'} · ${parseFloat(h.distance).toFixed(1)} mi away · ${stars(h.stars)}</div>
+        ${govLine}
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <a href="https://maps.google.com/?q=${encodeURIComponent(h.address)}" target="_blank"
+             style="flex:1;text-align:center;font-size:11px;font-weight:600;color:#00308f;
+             background:#f0f4f8;border:1px solid rgba(0,48,143,0.2);border-radius:6px;
+             padding:5px 4px;text-decoration:none">📍 Google Maps</a>
+          <a href="${isH?`https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`:
+                      `https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`}"
+             target="_blank"
+             style="flex:1;text-align:center;font-size:11px;font-weight:600;color:#fff;
+             background:#00308f;border-radius:6px;padding:5px 4px;text-decoration:none">Book →</a>
+        </div>
+      </div>`;
+
+    L.marker([hLat,hLng],{icon}).addTo(mapObj).bindPopup(popup,{maxWidth:220});
+    bounds.push([hLat,hLng]);
+  });
+
+  if(bounds.length>1)mapObj.fitBounds(bounds,{padding:[30,30],maxZoom:13});
+  else mapObj.setView([lat,lng],11);
+  setTimeout(()=>mapObj.invalidateSize(),200);
 }
 
-async function getPerDiem(loc){
-  // FY2026 runs Oct 1 2025 – Sep 30 2026
-  // Current month for lodging rate lookup
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const mo = months[new Date().getMonth()];
-  const base = 'https://api.gsa.gov/travel/perdiem/v2/rates';
-
-  function parse(data){
-    // GSA response: {rates:[{rate:[{Jan,Feb,...,Oct,Meals,City,State,...}]}]}
-    const rates = data?.rates;
-    if(!rates||!rates.length) return null;
-    // Could be multiple rate entries; pick the one with highest lodging (NSA > standard)
-    let best = null;
-    for(const entry of rates){
-      const r = entry?.rate?.[0];
-      if(!r) continue;
-      const lodge = parseInt(r[mo] || r['Oct'] || 0);
-      const mie   = parseInt(r['Meals'] || 0);
-      if(!lodge) continue;
-      if(!best || lodge > best.lodge){
-        best = {
-          lodge,
-          mie,
-          label: [r['City']||'', r['State']||''].filter(Boolean).join(', ')
-        };
-      }
-    }
-    return best;
-  }
-
-  // Attempt 1: ZIP code lookup
-  if(loc.zip){
-    try{
-      const resp = await fetch(`${base}/zip/${loc.zip}/year/2026`, {
-        headers:{'Accept':'application/json'}
-      });
-      if(resp.ok){
-        const data = await resp.json();
-        const p = parse(data);
-        if(p){ 
-          // Update GSA.gov deep link with actual ZIP
-          const link = document.getElementById('pdGsaLink');
-          if(link) link.href = `https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&zip=${loc.zip}&fiscal_year=2026`;
-          return p;
-        }
-      }
-    }catch(e){ console.warn('GSA ZIP lookup failed:',e); }
-  }
-
-  // Attempt 2: City + State lookup
-  if(loc.city && loc.code){
-    try{
-      const cityEnc = encodeURIComponent(loc.city.replace(/[.']/g,' ').trim());
-      const resp = await fetch(`${base}/city/${cityEnc}/state/${loc.code}/year/2026`, {
-        headers:{'Accept':'application/json'}
-      });
-      if(resp.ok){
-        const data = await resp.json();
-        const p = parse(data);
-        if(p){
-          const link = document.getElementById('pdGsaLink');
-          if(link) link.href = `https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&city=${cityEnc}&state=${loc.code}&fiscal_year=2026`;
-          return p;
-        }
-      }
-    }catch(e){ console.warn('GSA city lookup failed:',e); }
-  }
-
-  // Attempt 3: State-only to get standard rate
-  if(loc.code){
-    try{
-      const resp = await fetch(`${base}/state/${loc.code}/year/2026`, {
-        headers:{'Accept':'application/json'}
-      });
-      if(resp.ok){
-        const data = await resp.json();
-        const p = parse(data);
-        if(p) return {...p, label: p.label + ' (state standard)'};
-      }
-    }catch(e){}
-  }
-
-  // Try known hardcoded rates for major metros
-  const known = getKnownRate(loc);
-  if(known){
-    console.log('Using known NSA rate for', known.label);
-    return known;
-  }
-
-  // Last resort: Standard CONUS rate FY2026 ($110 lodging / $68 M&IE)
-  console.warn('GSA API unavailable — using standard CONUS rate');
-  return{
-    lodge: 110,
-    mie: 68,
-    label: (loc.city ? `${loc.city}, ${loc.code}` : 'Your location') + ' (standard CONUS rate)'
-  };
-}
-
-/* ── Render ── */
+/* ════ RENDER HOTEL CARDS ════ */
 function render(){
   let list=chain==='all'?hotels:hotels.filter(h=>h.chain===chain);
-
-  // Sort: per diem first, then stars high→low, then distance
-  list=[...list].sort((a,b)=>{
-    // 1. Within per diem before over per diem
-    if(perDiemRate){
+  if(perDiemRate){
+    list=[...list].sort((a,b)=>{
       const ar=parseFloat((a.mil_rate||'').replace(/[^0-9.]/g,''))||999;
       const br=parseFloat((b.mil_rate||'').replace(/[^0-9.]/g,''))||999;
-      const ai=ar<=perDiemRate, bi=br<=perDiemRate;
-      if(ai&&!bi)return-1; if(!ai&&bi)return 1;
-    }
-    // 2. Higher star rating first
-    const aS=parseFloat(a.stars||0), bS=parseFloat(b.stars||0);
-    if(bS!==aS)return bS-aS;
-    // 3. Closer distance last tiebreak
-    return a._miles-b._miles;
-  });
-  if(perDiemRate) document.getElementById('legRow').style.display='flex';
+      const ai=ar<=perDiemRate,bi=br<=perDiemRate;
+      if(ai&&!bi)return-1;if(!ai&&bi)return 1;
+      const aS=parseFloat(a.stars||0),bS=parseFloat(b.stars||0);
+      if(bS!==aS)return bS-aS;
+      return a._miles-b._miles;
+    });
+    document.getElementById('legRow').style.display='flex';
+  }
 
   const hdr=document.getElementById('reshdr');
   hdr.style.display='block';
   hdr.textContent=list.length
-    ?`${list.length} propert${list.length===1?'y':'ies'} within 25 miles${perDiemRate?' — per diem &amp; top rated first':' — top rated first'}`
+    ?`${list.length} propert${list.length===1?'y':'ies'} within 25 miles${perDiemRate?' — per diem approved first':' — top rated first'}`
     :'No properties match this filter.';
 
   document.getElementById('results').innerHTML=list.map(h=>{
@@ -645,165 +465,155 @@ function render(){
     const sn=h.stars?parseFloat(h.stars).toFixed(1):'';
     const d=parseFloat(h.distance||0).toFixed(1);
     const milNum=parseFloat((h.mil_rate||'').replace(/[^0-9.]/g,''))||null;
+    const withinPD=perDiemRate&&milNum?milNum<=perDiemRate:null;
+    const cardClass=withinPD===true?'hcard pd-ok':withinPD===false?'hcard pd-no':'hcard';
+    const pdBadge=withinPD===true?'<span class="badge bpd-ok">✓ Per Diem</span>':withinPD===false?'<span class="badge bpd-no">Over PD</span>':'';
+    const av=h.available===true?'<span class="avy">✓ Available tonight</span>':h.available===false?'<span class="avn">✗ Sold out</span>':'<span class="avu">Check availability</span>';
+    const book=isH?`https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`:
+      `https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`;
 
-    const av=h.available===true?'<span class="avy">✓ Available tonight</span>'
-            :h.available===false?'<span class="avn">✗ Sold out</span>'
-            :'<span class="avu">Check availability</span>';
-
-    const book=isH
-      ?`https://www.hilton.com/en/search/?query=${encodeURIComponent(h.name)}`
-      :`https://www.marriott.com/search/findHotels.mi?searchType=InCity&queryType=KEYWORD&keyword=${encodeURIComponent(h.name)}`;
-
-    // Rate comparison
-    let rateHtml='', cardClass='hcard', pdBadge='';
+    let rateHtml='';
     if(perDiemRate&&milNum){
-      const diff=perDiemRate-milNum;
-      const ok=diff>=0;
-      cardClass=ok?'hcard pd-ok':'hcard pd-no';
-      pdBadge=ok?'<span class="badge bpd-ok">✓ Per Diem</span>'
-                :'<span class="badge bpd-no">Over PD</span>';
-      rateHtml=`
-        <div class="rate-box">
-          <div class="rate-cols">
-            <div class="rate-col">
-              <div class="rlbl">Mil / Govt Rate</div>
-              <div class="rmil">${h.mil_rate||'Call'}</div>
-            </div>
-            <div class="rate-divider"></div>
-            <div class="rate-col">
-              <div class="rlbl">GSA Per Diem Cap</div>
-              <div class="rpd">$${perDiemRate}/night</div>
-            </div>
-            ${h.price?`<div class="rate-divider"></div>
-            <div class="rate-col">
-              <div class="rlbl">Standard Rate</div>
-              <div class="rstd">${h.price}</div>
-            </div>`:''}
+      const diff=perDiemRate-milNum,ok=diff>=0;
+      rateHtml=`<div class="rate-box">
+        <div class="rate-cols">
+          <div class="rate-col"><div class="rlbl">Mil / Govt Rate</div><div class="rmil">${h.mil_rate}</div></div>
+          <div class="rate-divider"></div>
+          <div class="rate-col"><div class="rlbl">GSA Per Diem Cap</div><div class="rpd">$${perDiemRate}/night</div></div>
+          ${h.price?`<div class="rate-divider"></div><div class="rate-col"><div class="rlbl">Standard Rate</div><div class="rstd">${h.price}</div></div>`:''}
+        </div>
+        <div class="verdict ${ok?'ok':'no'}">
+          <span class="verdict-icon">${ok?'✅':'🚫'}</span>
+          <div class="verdict-txt">
+            <strong style="color:${ok?'#1a7a3c':'#b85c00'}">${ok?'Within per diem limit':'Exceeds per diem limit'}</strong><br>
+            ${ok?`$${diff} under cap — approved for booking`:`$${Math.abs(diff)} over cap — requires authorization`}
           </div>
-          <div class="verdict ${ok?'ok':'no'}">
-            <span class="verdict-icon">${ok?'✅':'🚫'}</span>
-            <div class="verdict-txt">
-              <strong style="color:${ok?'var(--green)':'var(--amber)'}">
-                ${ok?'Within per diem limit':'Exceeds per diem limit'}
-              </strong><br>
-              ${ok?`$${diff} under cap — approved for booking`
-                  :`$${Math.abs(diff)} over cap — requires commander authorization`}
-            </div>
-          </div>
-        </div>`;
-    } else {
-      rateHtml=`
-        <div class="rate-box">
-          <div class="rate-cols">
-            <div class="rate-col">
-              <div class="rlbl">Mil / Govt Rate</div>
-              <div class="rmil">${h.mil_rate||'<span style="font-size:13px;font-weight:400">Call for rate</span>'}</div>
-            </div>
-            ${h.price?`<div class="rate-divider"></div>
-            <div class="rate-col">
-              <div class="rlbl">Standard Rate</div>
-              <div class="rstd">${h.price}</div>
-            </div>`:''}
-          </div>
-        </div>`;
+        </div>
+      </div>`;
+    }else{
+      rateHtml=`<div class="rate-box"><div class="rate-cols">
+        <div class="rate-col"><div class="rlbl">Mil / Govt Rate</div><div class="rmil">${h.mil_rate||'Call for rate'}</div></div>
+        ${h.price?`<div class="rate-divider"></div><div class="rate-col"><div class="rlbl">Standard Rate</div><div class="rstd">${h.price}</div></div>`:''}
+      </div></div>`;
     }
 
     return`<div class="${cardClass}">
-      <div class="ctop">
-        <div class="cname">${h.name}</div>
-        <div class="badges"><span class="badge ${bc}">${lbl}</span>${pdBadge}</div>
-      </div>
-      <div class="cmeta">
-        <span>${d} mi</span>
-        ${st?`<span class="stars">${st}</span><span>${sn}</span>`:''}
-        <span>${h.brand||lbl}</span>
-      </div>
-      <a class="caddr" href="${map}">📍 ${h.address}</a>
+      <div class="ctop"><div class="cname">${h.name}</div><div class="badges"><span class="badge ${bc}">${lbl}</span>${pdBadge}</div></div>
+      <div class="cmeta"><span>${d} mi</span>${st?`<span class="stars">${st}</span><span>${sn}</span>`:''  }<span>${h.brand||lbl}</span></div>
+      <a class="caddr" href="${map}" target="_blank">📍 ${h.address} — Open in Maps</a>
       ${rateHtml}
       <div class="avrow">${av}<a class="bbtn" href="${book}" target="_blank" rel="noopener">Book →</a></div>
     </div>`;
   }).join('');
+
+  // Rebuild map pins when filter changes
+  if(mapObj&&mapVisible)buildMap();
 }
 
-/* ── Locate ── */
+/* ════ GEOLOCATION ════ */
 function doLocate(){
-  if(!navigator.geolocation){showErr('Geolocation not supported by this browser.');return;}
+  if(!navigator.geolocation){showErr('Geolocation not supported.');return;}
   document.getElementById('dbw').classList.add('off');
   document.getElementById('iosHelp').style.display='none';
   load('Acquiring your location…');
   document.getElementById('geo').textContent='';
-
   navigator.geolocation.getCurrentPosition(
     pos=>{
-      lat=pos.coords.latitude; lng=pos.coords.longitude;
-      const ns=lat>=0?'N':'S', ew=lng>=0?'E':'W';
-      document.getElementById('geo').textContent=
-        `${Math.abs(lat).toFixed(4)}° ${ns}  ${Math.abs(lng).toFixed(4)}° ${ew}`;
+      lat=pos.coords.latitude;lng=pos.coords.longitude;
+      const ns=lat>=0?'N':'S',ew=lng>=0?'E':'W';
+      document.getElementById('geo').textContent=`${Math.abs(lat).toFixed(4)}° ${ns}  ${Math.abs(lng).toFixed(4)}° ${ew}`;
       doSearch();
     },
     e=>{
       document.getElementById('dbw').classList.remove('off');
       document.getElementById('status').innerHTML='';
       const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
-      if(e.code===1&&isIOS){
-        document.getElementById('iosHelp').style.display='block';
-      } else {
-        const m={1:'Location permission denied. Please enable location in your browser settings.',
-                 2:'Location unavailable. Try again.',
-                 3:'Location timed out. Try again.'};
-        showErr(m[e.code]||'Could not get your location.');
-      }
+      if(e.code===1&&isIOS){document.getElementById('iosHelp').style.display='block';}
+      else{const m={1:'Location permission denied.',2:'Location unavailable.',3:'Timed out.'};showErr(m[e.code]||'Could not get location.');}
     },
     {enableHighAccuracy:true,timeout:14000,maximumAge:60000}
   );
 }
 
-/* ── API call helper ── */
-/* ── Sleep helper for retry ── */
-function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+/* ════ REVERSE GEOCODE ════ */
+async function getLocation(lt,ln){
+  try{
+    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lt}&lon=${ln}&format=json`,{headers:{'Accept-Language':'en-US,en'}});
+    const d=await r.json();const a=d.address||{};
+    return{zip:(a.postcode||'').split('-')[0],city:a.city||a.town||a.village||'',county:a.county||'',state:a.state||'',code:(a['ISO3166-2-lvl4']||'').split('-')[1]||''};
+  }catch(e){return null;}
+}
 
-/* ── Single API call attempt ── */
+/* ════ GSA PER DIEM ════ */
+const GSA_KNOWN = {
+  // Georgia
+  'GA_FULTON':   { label:'Atlanta / Fulton County, GA',   mie:86,
+    monthly:[182,182,182,182,182,182,182,182,182,197,197,197] },
+  'GA_DEKALB':   { label:'DeKalb County, GA',             mie:86,
+    monthly:[182,182,182,182,182,182,182,182,182,182,182,182] },
+  'GA_COBB':     { label:'Cobb County (Marietta), GA',    mie:68,
+    monthly:[126,126,126,126,126,126,126,126,126,126,126,126] },
+  // Add more as needed
+};
+
+
+function getKnownRate(loc){
+  const st=(loc.code||'').toUpperCase();
+  const county=(loc.county||loc.city||'').toUpperCase();
+  if(st==='GA'){
+    if(county.includes('FULTON')||county.includes('ALPHARETTA')||county.includes('ROSWELL')||county.includes('SANDY SPRINGS')||county.includes('JOHNS CREEK')||county.includes('ATLANTA')){
+      const r=GSA_KNOWN['GA_FULTON'],mo=new Date().getMonth();
+      return{lodge:r.monthly[mo],mie:r.mie,label:r.label,known:true};
+    }
+    if(county.includes('COBB')||county.includes('MARIETTA')){
+      const r=GSA_KNOWN['GA_COBB'],mo=new Date().getMonth();
+      return{lodge:r.monthly[mo],mie:r.mie,label:r.label,known:true};
+    }
+  }
+  return null;
+}
+
+async function getPerDiem(loc){
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const mo=months[new Date().getMonth()];
+  const base='https://api.gsa.gov/travel/perdiem/v2/rates';
+  function parse(data){
+    const rates=data?.rates;if(!rates||!rates.length)return null;
+    let best=null;
+    for(const entry of rates){
+      const r=entry?.rate?.[0];if(!r)continue;
+      const lodge=parseInt(r[mo]||r['Oct']||0),mie=parseInt(r['Meals']||0);
+      if(!lodge)continue;
+      if(!best||lodge>best.lodge)best={lodge,mie,label:[r['City']||'',r['State']||''].filter(Boolean).join(', ')};
+    }
+    return best;
+  }
+  if(loc.zip){try{const r=await fetch(`${base}/zip/${loc.zip}/year/2026`,{headers:{'Accept':'application/json'}});if(r.ok){const p=parse(await r.json());if(p){const link=document.getElementById('pdGsaLink');if(link)link.href=`https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&zip=${loc.zip}&fiscal_year=2026`;return p;}}}catch(e){}}
+  if(loc.city&&loc.code){try{const city=encodeURIComponent(loc.city.replace(/[.']/g,' ').trim());const r=await fetch(`${base}/city/${city}/state/${loc.code}/year/2026`,{headers:{'Accept':'application/json'}});if(r.ok){const p=parse(await r.json());if(p)return p;}}catch(e){}}
+  const known=getKnownRate(loc);if(known)return known;
+  return{lodge:110,mie:68,label:(loc.city?`${loc.city}, ${loc.code}`:'Your location')+' (standard CONUS rate)'};
+}
+
+/* ════ API CALL WITH RETRY ════ */
 async function callAPIonce(chainName){
   const checkin=document.getElementById('checkin').value;
   const brands=chainName==='Hilton'
-    ?'Hilton Hotels & Resorts, Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry Collection, Curio Collection, Waldorf Astoria, Conrad, LXR Hotels'
-    :'Marriott Hotels & Resorts, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points, Autograph Collection, Delta Hotels, Gaylord Hotels';
-
-  const resp=await fetch(WORKER_URL,{
-    method:'POST',headers:{'content-type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-haiku-4-5-20251001',max_tokens:4000,
+    ?'Hilton Hotels & Resorts, Hampton Inn, Homewood Suites, Embassy Suites, DoubleTree, Hilton Garden Inn, Tru by Hilton, Home2 Suites, Canopy, Tapestry Collection, Curio Collection, Waldorf Astoria, Conrad'
+    :'Marriott Hotels & Resorts, Courtyard, Residence Inn, Westin, Sheraton, W Hotels, AC Hotels, Moxy, Aloft, Springhill Suites, Fairfield, TownePlace Suites, Element, Le Meridien, Renaissance, St. Regis, Luxury Collection, Four Points, Autograph Collection, Delta Hotels';
+  const resp=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:4000,
       system:`You are a hotel data assistant for US military travelers. Return a JSON array of real ${chainName} branded hotels near given GPS coordinates. Include these brands: ${brands}.
-Return ONLY valid JSON, no markdown. Each entry needs precise lat/lng of the actual hotel.
+Return ONLY valid JSON, no markdown. Each entry needs precise lat/lng.
 Schema: [{"name":"Full name","address":"Street, City, State ZIP","chain":"${chainName.toLowerCase()}","brand":"Sub-brand","lat":33.749,"lng":-84.388,"stars":3.5,"available":true,"price":"$149","mil_rate":"$109"}]
-Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real properties across the region.`,
-      messages:[{role:'user',
-        content:`Find ${chainName} hotels within 30 miles of lat ${lat.toFixed(5)}, lng ${lng.toFixed(5)}. Include properties in all surrounding cities and suburbs. Check-in: ${checkin}. Each property needs precise lat/lng.`
-      }]
+Return 15-20 real properties across the region with precise lat/lng.`,
+      messages:[{role:'user',content:`Find ${chainName} hotels within 30 miles of lat ${lat.toFixed(5)}, lng ${lng.toFixed(5)}. Cover all surrounding cities and suburbs. Check-in: ${checkin}. Include precise lat/lng per property.`}]
     })
   });
-
-  // Handle overload (529) and rate limit (429) — return status for retry logic
   let data;
-  try { data = await resp.json(); } catch(e) { throw new Error(`HTTP ${resp.status} — could not parse response`); }
-
-  // Retryable: overloaded (529) or rate limit (429)
-  if(resp.status===529||resp.status===429){
-    const err=new Error(data?.error?.message||`API busy (${resp.status}) — will retry`);
-    err.retryable=true;
-    throw err;
-  }
-  if(!resp.ok){
-    throw new Error(`HTTP ${resp.status}: ${data?.error?.message||JSON.stringify(data).slice(0,120)}`);
-  }
-  if(data.error){
-    const msg = data.error.message||data.error.type||JSON.stringify(data.error);
-    const err=new Error(msg);
-    if(data.error.type==='overloaded_error'||msg.toLowerCase().includes('overload')){
-      err.retryable=true;
-    }
-    throw err;
-  }
+  try{data=await resp.json();}catch(e){throw new Error(`HTTP ${resp.status} — bad response`);}
+  if(resp.status===529||resp.status===429){const err=new Error(data?.error?.message||`API busy (${resp.status})`);err.retryable=true;throw err;}
+  if(!resp.ok)throw new Error(`HTTP ${resp.status}: ${data?.error?.message||''}`);
+  if(data.error){const err=new Error(data.error.message||data.error.type);if(data.error.type==='overloaded_error')err.retryable=true;throw err;}
   let text=(data.content||[]).map(b=>b.text||'').join('').trim();
   text=text.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/i,'').trim();
   const s=text.indexOf('['),e2=text.lastIndexOf(']');
@@ -811,31 +621,25 @@ Rules: lat/lng must be the precise GPS of the hotel building. Return 15-20 real 
   return JSON.parse(text.slice(s,e2+1));
 }
 
-/* ── callAPI with auto-retry (2 attempts, short backoff) ── */
 async function callAPI(chainName){
-  // First attempt
-  try{
-    return await callAPIonce(chainName);
-  } catch(err){
-    if(!err.retryable) throw err;
-    // One retry after 4 seconds
-    load(`API busy — retrying in 4s…`);
+  try{return await callAPIonce(chainName);}
+  catch(err){
+    if(!err.retryable)throw err;
+    load('API busy — retrying in 4s…');
     await sleep(4000);
     return await callAPIonce(chainName);
   }
 }
 
-/* ── Main search ── */
+/* ════ MAIN SEARCH ════ */
 async function doSearch(){
   load('Fetching GSA per diem &amp; searching for hotels…');
-  hotels=[]; perDiemRate=null;
+  hotels=[];perDiemRate=null;
 
-  // Kick off all requests simultaneously
   const locP=getLocation(lat,lng);
   const hiltonP=callAPI('Hilton');
   const marriottP=callAPI('Marriott');
 
-  // Per diem — show as soon as ready
   try{
     const loc=await locP;
     if(loc){
@@ -846,228 +650,34 @@ async function doSearch(){
         document.getElementById('pdLodging').textContent=`$${pd.lodge}/night`;
         document.getElementById('pdMie').textContent=pd.mie?`$${pd.mie}/day`:'—';
         document.getElementById('pdBanner').style.display='block';
-        // Note if this is fallback rate
-        if(pd.label && pd.label.includes('CONUS')){
-          document.getElementById('pdLoc').style.color='rgba(255,220,100,0.7)';
-        }
       }
     }
   }catch(e){/* non-fatal */}
 
-  // Hotels
   try{
-    const [hr,mr]=await Promise.all([hiltonP,marriottP]);
+    const[hr,mr]=await Promise.all([hiltonP,marriottP]);
     const combined=[...hr,...mr];
     if(!combined.length)throw new Error('No hotels returned for this location');
-
-    // Deduplicate
     const seen=new Set();
-    const unique=combined.filter(h=>{
-      const k=(h.name+h.address).toLowerCase().replace(/\s+/g,'');
-      if(seen.has(k))return false; seen.add(k); return true;
-    });
-
-    // Haversine distance, filter 25 mi
+    const unique=combined.filter(h=>{const k=(h.name+h.address).toLowerCase().replace(/\s+/g,'');if(seen.has(k))return false;seen.add(k);return true;});
     hotels=unique.map(h=>{
       const hLat=parseFloat(h.lat),hLng=parseFloat(h.lng);
       const m=(hLat&&hLng)?haversine(lat,lng,hLat,hLng):999;
       return{...h,chain:(h.chain||'').toLowerCase().trim(),distance:m.toFixed(1),_miles:m};
     }).filter(h=>h._miles<=25).sort((a,b)=>{
       const aS=parseFloat(a.stars||0),bS=parseFloat(b.stars||0);
-      if(bS!==aS)return bS-aS;
-      return a._miles-b._miles;
+      if(bS!==aS)return bS-aS;return a._miles-b._miles;
     });
-
     if(!hotels.length)throw new Error('No Hilton or Marriott properties found within 25 miles');
     document.getElementById('status').innerHTML='';
     render();
-    // Show and populate map
-    showMapAfterSearch();
-    refreshMap();
-    showMapAfterSearch();
+    buildMap();
   }catch(e){
-    showErr(`
-      <strong>Search failed:</strong> ${e.message}
-      <br><br>
-      <small>
-        💡 <strong>If you keep seeing "overloaded":</strong><br>
-        1. Check your API key is valid at 
-           <a href="https://console.anthropic.com" target="_blank" style="color:#00308f">console.anthropic.com</a><br>
-        2. Check your account has available credits<br>
-        3. The model name may have changed — contact support
-      </small>
-    `);
+    showErr(`<strong>Search failed:</strong> ${e.message}<br><br>
+      <small>If this keeps happening, check your <a href="https://console.anthropic.com" target="_blank" style="color:#00308f">Anthropic console</a> for API status or billing.</small>`);
   }
-
   document.getElementById('dbw').classList.remove('off');
 }
-
-/* ════════════════════════════════════
-   MAP — OpenStreetMap tiles via Leaflet CDN
-   Lightweight, free, no API key needed
-════════════════════════════════════ */
-let mapObj = null, mapVisible = false, popupTimeout = null;
-
-function toggleMap() {
-  const btn = document.getElementById('mapToggleBtn');
-  const sec = document.getElementById('mapSection');
-  mapVisible = !mapVisible;
-
-  if (mapVisible) {
-    sec.style.display = 'block';
-    btn.textContent = '🗺️ Hide Map View';
-    // Small delay so element is visible before initializing
-    setTimeout(() => {
-      if (!mapObj) initMap();
-      else refreshMap();
-    }, 50);
-    // Smooth scroll to map
-    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    sec.style.display = 'none';
-    btn.textContent = '🗺️ Show Map View';
-  }
-}
-
-function loadLeaflet(cb) {
-  if (window.L) { cb(); return; }
-  // Load Leaflet CSS
-  const lCss = document.createElement('link');
-  lCss.rel = 'stylesheet';
-  lCss.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(lCss);
-  // Load Leaflet JS
-  const lJs = document.createElement('script');
-  lJs.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  lJs.onload = cb;
-  document.head.appendChild(lJs);
-}
-
-function initMap() {
-  loadLeaflet(() => {
-    const canvas = document.getElementById('mapCanvas');
-
-    // Init Leaflet map centered on user location
-    mapObj = L.map(canvas, {
-      center: [lat, lng],
-      zoom: 11,
-      zoomControl: true,
-      attributionControl: false
-    });
-
-    // OpenStreetMap tiles — free, no key needed
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© OpenStreetMap'
-    }).addTo(mapObj);
-
-    // Attribution
-    L.control.attribution({ prefix: false })
-      .addAttribution('© <a href="https://openstreetmap.org">OpenStreetMap</a>')
-      .addTo(mapObj);
-
-    addMapMarkers();
-  });
-}
-
-function refreshMap() {
-  if (!mapObj) { initMap(); return; }
-  // Clear existing markers
-  mapObj.eachLayer(l => { if (l instanceof L.Marker || l instanceof L.CircleMarker) mapObj.removeLayer(l); });
-  addMapMarkers();
-}
-
-function addMapMarkers() {
-  if (!mapObj || !window.L) return;
-  const list = chain === 'all' ? hotels : hotels.filter(h => h.chain === chain);
-  const bounds = [];
-
-  // User location marker
-  const youIcon = L.divIcon({
-    html: '<div style="background:#00308f;width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #00308f,0 2px 6px rgba(0,0,0,0.4)"></div>',
-    className: '',
-    iconSize: [16, 16],
-    iconAnchor: [8, 8]
-  });
-  L.marker([lat, lng], { icon: youIcon, zIndexOffset: 1000 })
-    .addTo(mapObj)
-    .bindPopup('<strong>📍 Your Location</strong>', { maxWidth: 160 });
-  bounds.push([lat, lng]);
-
-  // Hotel markers
-  list.forEach((h, i) => {
-    const hLat = parseFloat(h.lat), hLng = parseFloat(h.lng);
-    if (!hLat || !hLng) return;
-    bounds.push([hLat, hLng]);
-
-    const isH = h.chain === 'hilton';
-    const milNum = parseFloat((h.mil_rate || '').replace(/[^0-9.]/g, '')) || null;
-    const withinPD = perDiemRate && milNum ? milNum <= perDiemRate : null;
-
-    // Color coding
-    const dotColor = withinPD === true ? '#1a7a3c'
-                   : withinPD === false ? '#b85c00'
-                   : isH ? '#0d3b8a' : '#8a0d0d';
-
-    const chainLetter = isH ? 'H' : 'M';
-    const chainColor  = isH ? '#0d3b8a' : '#8a0d0d';
-
-    const icon = L.divIcon({
-      html: `<div style="
-        background:${dotColor};color:#fff;
-        width:24px;height:24px;border-radius:50%;
-        border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);
-        display:flex;align-items:center;justify-content:center;
-        font-size:11px;font-weight:700;font-family:sans-serif;
-        cursor:pointer">${chainLetter}</div>`,
-      className: '',
-      iconSize: [24, 24],
-      iconAnchor: [12, 12]
-    });
-
-    const pdLine = perDiemRate && milNum
-      ? `<div style="font-size:11px;margin-top:3px;color:${withinPD ? '#1a7a3c' : '#b85c00'};font-weight:600">
-           ${withinPD ? '✅ Within per diem' : '🚫 Exceeds per diem'}
-         </div>`
-      : '';
-
-    const popup = `
-      <div style="min-width:160px">
-        <strong style="font-size:13px;color:#0d1b2e;display:block;margin-bottom:2px">${h.name}</strong>
-        <span style="font-size:11px;color:#4a5568">${parseFloat(h.distance).toFixed(1)} mi away</span>
-        ${h.mil_rate ? `<div style="font-size:12px;font-weight:600;color:#00308f;margin-top:3px">
-          Mil rate: ${h.mil_rate}/night</div>` : ''}
-        ${perDiemRate ? `<div style="font-size:11px;color:#4a5568">GSA cap: $${perDiemRate}/night</div>` : ''}
-        ${pdLine}
-        <div style="margin-top:6px">
-          <a href="https://maps.google.com/?q=${encodeURIComponent(h.address)}" 
-             target="_blank"
-             style="font-size:11px;color:#00308f;text-decoration:none;font-weight:600">
-            📍 Get Directions ↗
-          </a>
-        </div>
-      </div>`;
-
-    L.marker([hLat, hLng], { icon })
-      .addTo(mapObj)
-      .bindPopup(popup, { maxWidth: 220, closeButton: true });
-  });
-
-  // Fit map to show all markers
-  if (bounds.length > 1) {
-    mapObj.fitBounds(bounds, { padding: [30, 30], maxZoom: 13 });
-  }
-}
-
-// Auto-show map after search completes
-function showMapAfterSearch() {
-  const btn = document.getElementById('mapToggleBtn');
-  btn.style.display = 'block';
-}
-
-
 </script>
-
-
 </body>
 </html>
